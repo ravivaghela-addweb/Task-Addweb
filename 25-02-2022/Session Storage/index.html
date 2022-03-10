@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Storage</title>
+    <body>
+</head>
+    <h2>Store Data Using Session Storage...</h2>
+    <div id="output"></div>
+    <script>
+        let result = document.getElementById("output");
+        if (typeof Storage !== "undefined") {
+            sessionStorage.clear();
+            sessionStorage.setItem("name", "Ravi");
+            result.innerHTML =
+            sessionStorage.getItem("name");
+        } else {
+            result.innerHTML =
+                                "Sorry, your browser does not support Web Storage...";
+        }
+        
+    </script>
+  </body>
+</html>

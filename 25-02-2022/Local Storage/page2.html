@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Data From Local Storage</title>
+  </head>
+  <body style="text-align: center;">
+
+    <h2>Getting Data From Page 1 Using Session Storage...</h2>
+      <span id="name"></span><br />
+      Your Address is <span id="address"></span>
+    <script>
+      let nameDOM = document.getElementById("name");
+      nameDOM.innerHTML = localStorage.getItem("textvalue");
+      let addressDOM = document.getElementById("address");
+      addressDOM.innerHTML = localStorage.getItem("textareavalue");
+    </script>
+  </body>
+</html>

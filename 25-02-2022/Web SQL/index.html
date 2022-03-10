@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web SQL</title>
+  </head>
+  <body>
+    <div id="output" name="output">Status Message</div>
+    <script>
+      let db = openDatabase("Database Demo", "1.0", "Web SQL", 2 * 1024 * 1024);
+      let msg;
+
+      db.transaction(function (tx) {
+        tx.executeSql(
+          "CREATE TABLE DATA(id unique, name, address)"
+        );
+        tx.executeSql(
+          'INSERT INTO DATA (id, name, address) VALUES (1, "Ravi Vaghela", "Patan")'
+        );
+        tx.executeSql(
+          'INSERT INTO DATA (id, name, address) VALUES (2, "Aaqib Shaikh", "Ahemdabad")'
+        );
+        tx.executeSql(
+          'INSERT INTO DATA (id, name, address) VALUES (3, "Nidhi Jain", "Dehgam")'
+        );
+        tx.executeSql(
+          'INSERT INTO DATA (id, name, address) VALUES (4, "Jinal Shah", "Ahemdabad")'
+        );
+
+        msg = "<p>Demo Database Created and Row Inserted</p>";
+
+        document.getElementById("output").innerHTML = msg;
+      });
+
+      db.transaction(function (tx) {
+        tx.executeSql(
+          "SELECT * FROM DATA",
+          [],
+          function (tx, results) {
+            let len = results.rows.length;
+
+            msg = "<p>Found Rows : " + len + "</p>";
+            document.getElementById("output").innerHTML += msg;
+
+            for (let i = 0; i < len; i++) {
+              msg = "<p><b>" + results.rows.item(i).name + "</b></p>";
+              document.getElementById("output").innerHTML += msg;
+            }
+          },
+          null
+        );
+      });
+    </script>
+  </body>
+</html>
