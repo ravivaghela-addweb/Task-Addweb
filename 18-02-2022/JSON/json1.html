@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Practice</title>
+</head>
+<body>
+    <script>
+        myJson = `{ "First Name" : "Ravi",
+                    "Last Name" : "Vaghela",
+                    "Age" : 23,
+                    "Degree" : null,
+                    "Laptops" : ["Asus", "HP", "Lenovo"],
+                    "result" : {
+                        "Maths" : 95,
+                        "Science" : 98,
+                        "English" : 99
+                    }
+                }`;
+        // console.log(JSON.parse(myJson));
+        console.log(myJson);
+        parsed = JSON.parse(myJson);
+        console.log(parsed);
+        console.log(parsed["First Name"]);
+        console.log(parsed["Last Name"]);
+        console.log(parsed["Age"]);
+        console.log(parsed["Degree"]);
+        console.log(parsed["Laptops"]);
+        console.log(parsed["Laptops"][2]);
+        console.log(parsed["myObj"]);
+    </script>
+</body>
+</html>

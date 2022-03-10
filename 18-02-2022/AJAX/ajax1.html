@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <div id="demo">
+      <h2>The XMLHttpRequest Object</h2>
+      <button type="button" onclick="loadFile()">Change Content</button>
+    </div>
+
+    <script>
+      function loadFile() {
+        const txtFile = new XMLHttpRequest();
+        txtFile.onload = function () {
+          let result = document.getElementById("demo");
+          result.innerHTML = this.responseText;
+          // console.log(this);
+        };
+        txtFile.open("GET", "ajax.txt");
+        txtFile.send();
+      }
+    </script>
+  </body>
+</html>

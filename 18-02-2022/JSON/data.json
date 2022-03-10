@@ -1,0 +1,12 @@
+{ 
+    "First Name" : "Ravi",
+    "Last Name" : "Vaghela",
+    "Age" : 23,
+    "Degree" : null,
+    "Laptops" : ["Asus", "HP", "Lenovo"],
+    "result" : {
+        "Maths" : 95,
+        "Science" : 98,
+        "English" : 99
+    }
+}
