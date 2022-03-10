@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send Data to Session Storage</title>
+  </head>
+  <body>
+    
+    <form action="page2.html" style="text-align: center;">
+      <h2>Sending Data to Page 2 Using Session Storage...</h2>
+        <label for="name">Name : </label>
+        <input type="text" id="myName" class="name" />
+        <br />
+        <label for="address">Address: </label>
+        <textarea type="text" class="address" id="myAddress"> </textarea>
+        <br />
+        <input type="submit" value="Save Data" onclick="passvalue();" />
+      </form>
+      <script>
+        function passvalue() {
+          var name = document.getElementById("myName").value;
+          var address = document.getElementById("myAddress").value;
+
+          sessionStorage.setItem("textvalue", name);
+          sessionStorage.setItem("textareavalue", address);
+        }
+      </script>
+  </body>
+</html>
