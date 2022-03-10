@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Max And Second Max</title>
+  </head>
+  <body>
+    <div>
+      <label for="number">Enter Number :</label>
+      <input type="number" id="number" />
+      <input type="button" value="Add Number" onclick="add()" />
+      <p id="array">Array :</p>
+    </div>
+    <input
+      type="button"
+      onclick="printFirstSecondlargest()"
+      value="Find Max and Second Max"
+    />
+    <p id="output"></p>
+    <script>
+      var j = 0;
+      var arr = Array();
+      function add() {
+        document.getElementById("array").innerHTML = "Array :";
+        arr[j] = Number(document.getElementById("number").value);
+
+        j++;
+        document.getElementById("number").value = "";
+        document.getElementById("array").innerHTML += '['+arr+']';
+      }
+      function printFirstSecondlargest() {
+        let result = document.getElementById("output");
+        let first = -1;
+        let second = -1;
+        for (let i = 0; i <= arr.length - 1; i++) {
+          if (arr[i] > first) {
+            second = first;
+            first = arr[i];
+          } else if (arr[i] > second && arr[i] != first) {
+            second = arr[i];
+          }
+        }
+        result.innerHTML = `The Largest Number is ${first} <br> The Second Largest Number is ${second}`;
+      }
+      // function printFirstSecondlargest() {
+      //   let result = document.getElementById("output");
+      //   let first, second;
+      //   if (arr.length < 2) {
+      //     result.innerHTML = `Invalid Input`;
+      //     return;
+      //   }
+      //   for (let i = arr.length - 2; i >= 0; i--) {
+      //     if (arr[i] != arr[arr.length - 1]) {
+      //       result.innerHTML = `The Second Largest Element is  arr[i]`;
+      //       return;
+      //     }
+      //   }
+      // }
+    </script>
+  </body>
+</html>

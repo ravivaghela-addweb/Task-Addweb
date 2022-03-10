@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator on Array</title>
+</head>
+<body>
+    <script>
+        let names = [ "Ravi",
+                        "Nidhi",
+                        "Aaqib",
+                        "Jinal",
+                        "Ghanshyam"];
+        function getNameArray(n1,n2,n3,n4,n5){
+        //     console.log(n1,n2,n3,n4,n5);
+        // function getNameArray(...names){
+            console.log(names);
+        }
+    // getNameArray(names[0],names[1],names[2],names[3],names[4]);
+    getNameArray(...names);
+    getNameArray(names);
+    </script>
+</body>
+</html>

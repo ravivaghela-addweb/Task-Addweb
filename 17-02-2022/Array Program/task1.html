@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum of Array</title>
+  </head>
+
+  <body>
+    <div>
+      <label for="number">Enter Number :</label>
+      <input type="number" id="number" />
+      <input type="button" value="Add Number" onclick="add()" />
+      <p id="array">Array :</p>
+    </div>
+    <input type="button" onclick="sum()" value="Sum Of The Array" />
+    <p id="output"></p>
+    <script>
+      var j = 0;
+      var arr = Array();
+      function add() {
+        document.getElementById("array").innerHTML = "Array :";
+        arr[j] = Number(document.getElementById("number").value);
+
+        j++;
+        document.getElementById("number").value = "";
+        document.getElementById("array").innerHTML += '['+arr+']';
+      }
+      function sum() {
+        result = document.getElementById("output");
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+        result.innerHTML = "Sum of Array is " + sum;
+      }
+    </script>
+  </body>
+</html>

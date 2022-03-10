@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Methods</title>
+</head>
+<body>
+  <script>
+
+    let str1 = "Addweb";
+    let str2 = "Solution";
+    let str3 = "Addweb Solution Jaipur";
+    let str4 = "         Addweb Solution         "
+    document.write(str1.charAt(2) + '<br>');
+    document.write(str1.charCodeAt(2) + '<br>');
+    document.write(str1.concat(' ',str2) + '<br>');
+    document.write(str1.endsWith("web") + '<br>');
+    document.write(str1.endsWith("we") + '<br>');
+    document.write(String.fromCharCode(68) + '<br>');
+    document.write(str1.includes("we") + '<br>');
+    document.write(str1.includes("abc") + '<br>');
+    document.write(str1.indexOf("web") + '<br>');
+    document.write(str1.lastIndexOf("dd") + '<br>');
+    document.write(str1.repeat(3) + '<br>');
+    document.write(str3.replace("Jaipur","Ahmedabad") + '<br>');
+    document.write(str1.search("web") + '<br>');
+    document.write(str1.slice(3,6 ) + '<br>');
+    document.write(str1.split("") + '<br>');
+    document.write(str3.split(" ",2) + '<br>');
+    document.write(str3.startsWith("Add") + '<br>');
+    document.write(str3.startsWith("web",3) + '<br>');
+    document.write(str1.substr(1, 3) + '<br>');
+    document.write(str1.substring(1, 3) + '<br>');
+    document.write(str1.toLowerCase() + '<br>');
+    document.write(str1.toUpperCase() + '<br>');
+    document.write(str4.trim() + '<br>');
+    document.write(str1.valueOf() + '<br>');
+
+  </script>
+</body>
+</html>

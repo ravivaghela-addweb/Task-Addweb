@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regular Expression</title>
+  </head>
+  <body>
+    <script>
+      //This is Regular Expression Literals
+      let reg = /Private/;
+      // reg = /Private/g; //Search Globally
+      // reg = /Private/i; //Case Insensitivity
+      let str = "Addweb Solution PriVate Limited Private";
+      console.log(reg);
+      console.log(reg.source);
+
+      // let result = reg.exec(str);
+      // console.log(result);
+      // console.log(reg.exec(str));
+      // console.log(reg.exec(str));
+
+      //return bool Value
+      // let result = reg.test(str);
+      // console.log(result);
+
+      //Match Value and get array
+    //   let result = str.match(reg);
+    //   console.log(result);
+
+    //Show Index of match string or No match -1
+    // let result = str.search(reg);
+    // console.log(result);
+
+        //replace value in string
+    let result = str.replace(reg, 'Ahemdabad');
+    console.log(result);
+    </script>
+  </body>
+</html>

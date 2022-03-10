@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Operators Array</title>
+</head>
+<body>
+    <script>
+        // In ES5 use Arguments, 
+        // its define total no of parameters 
+        // function arraySum(a,b,c){
+        //     console.log(arguments);
+        //     console.log(arguments[2]);
+        
+        // In ES6 Use Rest Operator 
+        //its define only others value
+        function arraySum(a,b,c,...others){
+            console.log(others);
+            return a+b+c;
+        }
+        const result = arraySum(5,10,15,20,25,30);
+        console.log(result);
+    </script>
+</body>
+</html>

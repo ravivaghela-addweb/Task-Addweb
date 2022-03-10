@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Date Methods</title>
+</head>
+<body>
+    <script>
+        const d = new Date();
+        const minute = 1000 * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const year = day * 365;
+        const years = Math.round(d.getTime() / year);
+        
+        const parseDate = Date.parse("November 07, 1999");
+        document.write('Parse Date 07/11/1999 = ' + parseDate + '<br>');
+        const date = new Date("November 07, 1999");
+        document.write(date + '<br>');
+        
+        document.write(d.setFullYear(2020), d + '<br>');
+        document.write(d.setMonth(2), d + '<br>');
+        document.write(d.setHours(24), d + '<br>');
+        document.write(d.setMinutes(60), d + '<br>');
+        document.write(d.setSeconds(20), d + '<br>');
+        document.write(d.setMilliseconds(500), + '<br>');
+
+   </script>
+</body>
+</html>
