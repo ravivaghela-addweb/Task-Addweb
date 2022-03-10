@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Scale</title>
+</head>
+<body>
+    <center>
+        <h1>Canvas Path</h1>
+        <canvas id="myCanvas" width="300" height="150"
+        style="border: 2px solid black;">
+        Your Browser Does Not Support The Canvas Tag
+        </canvas>
+    </center>
+    <script>
+        const c = document.getElementById("myCanvas");
+        const ctx = c.getContext("2d");
+
+        ctx.strokeRect(5, 5, 25, 15);
+        ctx.scale(2, 2);
+        ctx.strokeRect(5, 5, 25, 15);
+        ctx.scale(3, 2);
+        ctx.strokeRect(5, 5, 25, 15);
+        ctx.scale(4, 2);
+    </script>
+</body>
+</html>

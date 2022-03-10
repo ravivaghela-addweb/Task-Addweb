@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Pattern</title>
+</head>
+<body>
+    <center>
+    <img src="lamp.jpg" id="yellowImage" width="32" height="32">
+    <h1>Canvas Pattern</h1>
+    <canvas id="myCanvas" width="300" height="150"
+    style="border: 2px solid black;">
+    Your Browser Does Not Support The Canvas Tag
+    </canvas><br><br>
+
+    <button onclick="drawPattern('repeat')">Repeat</button>&nbsp;&nbsp; 
+    <button onclick="drawPattern('repeat-x')">Repeat-x</button>&nbsp;&nbsp;
+    <button onclick="drawPattern('repeat-y')">Repeat-y</button>&nbsp;&nbsp; 
+    <button onclick="drawPattern('no-repeat')">No-repeat</button> 
+    </center>
+    <script>
+        function drawPattern(direction) {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.clearRect(0, 0, c.width, c.height); 
+            var img = document.getElementById("yellowImage");
+            console.log(img);
+            var pattern = ctx.createPattern(img, direction);
+            ctx.rect(0, 0, 150, 100);
+            ctx.fillStyle = pattern;
+            ctx.fill();
+        }
+    </script>
+</body>
+</html>
