@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Numbers</title>
+  </head>
+  <body>
+    <div>
+      <input type="number" id="input_number" placeholder="Enter the number" />
+      <input
+        type="button"
+        value="Reverse Number"
+        id="input_button"
+        onclick="findReverse()"
+      />
+    </div>
+    <div id="output"></div>
+    <script>
+      function findReverse() {
+        let number = Number(document.getElementById("input_number").value);
+        let reverse = Number(String(number).split("").reverse().join(""));
+        let result = document.getElementById("output");
+        result.innerHTML = "Reverse : " + reverse;
+      }
+
+      // let button = document.getElementById("input_button");
+      // button.onclick = findReverse;
+    </script>
+  </body>
+</html>

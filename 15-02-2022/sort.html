@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort Numbers</title>
+  </head>
+  <body>
+    <div>
+      <label for="fnumber">Enter First Number :</label>
+      <input type="number" id="fnumber" /><br />
+      <label for="snumber">Enter Second Number :</label>
+      <input type="number" id="snumber" /><br />
+      <label for="tnumber">Enter Third Number :</label>
+      <input type="number" id="tnumber" /><br />
+      <input
+        type="button"
+        id="sorting"
+        onclick="sorting()"
+        value="Sort Numbers"
+      />
+    </div>
+    <div id="output"></div>
+    <script>
+      function sorting() {
+        let x = document.getElementById("fnumber").value;
+        let y = document.getElementById("snumber").value;
+        let z = document.getElementById("tnumber").value;
+        let result = document.getElementById("output");
+        if (x > y && x > z) {
+          if (y > z) {
+            result.innerHTML = `${x}, ${y}, ${z}`;
+          } else {
+            result.innerHTML = `${x}, ${z}, ${y}`;
+          }
+        } else if (y > x && y > z) {
+          if (x > z) {
+            result.innerHTML = `${y}, ${x}, ${z}`;
+          } else {
+            result.innerHTML = `${y}, ${z}, ${x}`;
+          }
+        } else if (z > x && z > y) {
+          if (x > y) {
+            result.innerHTML = `${z}, ${x}, ${y}`;
+          } else {
+            result.innerHTML = `${z}, ${y}, ${x}`;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

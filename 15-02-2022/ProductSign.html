@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Product Sign</title>
+  </head>
+  <body>
+    <label for="fvalue">Enter First Number :</label>
+    <input id="fvalue" type="number" /><br />
+    <label for="svalue">Enter Second Number :</label>
+    <input id="svalue" type="number" /><br />
+    <label for="tvalue">Enter Third Number :</label>
+    <input id="tvalue" type="number" /><br />
+    <input type="submit" onclick="productSign()" value="Get Sign Of Product" />
+
+    <script type="text/Javascript">
+      function productSign() {
+        const x = document.getElementById('fvalue').value;
+        const y = document.getElementById('svalue').value;
+        const z = document.getElementById('tvalue').value;
+        if (x + y + z >= 0) {
+          alert("The sign is +");
+        } else if (x < 0 && y < 0 && z < 0) {
+          alert("The sign is +");
+        } else if (x > 0 && y < 0 && z < 0) {
+          alert("The sign is +");
+        } else if (x < 0 && y > 0 && z < 0) {
+          alert("The sign is +");
+        } else {
+          alert("The sign is -");
+        }
+      }
+        // function value() {
+
+
+        //   var x = document.geElementById("fvalue").value;
+        //   var y = document.geElementById("svalue").value;;
+        //   var z = document.geElementById("tvalue").value;;
+        //   if (x>0 && y>0 && z>0)
+        //   {
+        //       alert("The sign is +");
+        //   }
+        //   else if (x<0 && y<0 && z<0)
+        //   {
+        //       alert("The sign is -");
+        //   }
+        //   else if (x>0 && y<0 && z<0)
+        //   {
+        //       alert("The sign is +");
+        //   }
+        //   else if (x<0 && y>0 && z<0)
+        //   {
+        //       alert("The sign is +");
+        //   }
+        //   else
+        //   {
+        //       alert("The sign is -");
+        //   }
+        // }
+        // function value() {
+        //   document.getElementById("fvalue").value;
+        //   document.getElementById("svalue").value;
+        //   document.getElementById("tvalue").value;
+
+        //   if (fvalue > 0 && svalue > 0 && tvalue > 0) {
+        //     alert("The sign is +");
+        //   } else if (fvalue < 0 && svalue < 0 && tvalue < 0) {
+        //     alert("The sign is +");
+        //   } else if (fvalue > 0 && svalue < 0 && tvalue < 0) {
+        //     alert("The sign is +");
+        //   } else if (fvalue < 0 && svalue > 0 && tvalue < 0) {
+        //     alert("The sign is +");
+        //   } else {
+        //     alert("The sign is -");
+        //   }
+        // }
+    </script>
+  </body>
+</html>

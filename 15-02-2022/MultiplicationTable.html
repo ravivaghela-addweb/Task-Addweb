@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Multiplication Table</title>
+    <body>
+      <center>
+        <div id="div1">
+          <label id="valueNumber">Enter Number :</label>
+          <input
+            type="number"
+            id="input"
+            name="enternumber"
+            min="1"
+            max="1000"
+            step="1"
+          />
+          <input
+            type="button"
+            name=""
+            value="Generate Table"
+            onclick="multiplicationTable()"
+          />
+        </div>
+        <div id="div_output"></div>
+      </center>
+      <script type="text/JavaScript">
+         function multiplicationTable(){
+        const number = document.getElementById("input").value;
+        const output = document.getElementById("div_output");
+          // var clear = document.getElementById("clear");
+          // var textarea = document.getElementById("number");
+          if (number <= 1 || number > 1000) {
+              alert("Please Enter valid Number between 1 to 1000");
+          } else {
+              output.innerHTML = " ";
+              output.style.display = "block";
+
+              var i = 1;
+              while(i <= 10){
+                var result = `${number} * ${i} = ${number * i}<br>`;
+                i++;
+                output.innerHTML += result;
+              }
+          }
+        }
+      </script>
+    </body>
+  </head>
+</html>

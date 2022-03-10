@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combination Of Strings</title>
+  </head>
+  <body>
+    <div>
+      <label for="txt">Enter Text :</label>
+      <input type="text" id="txt" /><br />
+      <input type="button" onclick="stringComb()" value="Check Combinations" />
+    </div>
+    <div id="output"></div>
+  </body>
+  <script>
+    function stringComb() {
+      let str = document.getElementById("txt").value;
+      let result = document.getElementById("output");
+      let temp = [];
+      let res = [];
+      for (i = 0; i < str.length; i++) {
+        temp = [str[i]];
+        let index = 0;
+        while (res[index]) {
+          temp.push("" + res[index] + str[i]);
+          index++;
+        }
+        res = res.concat(temp);
+      }
+      result.innerHTML = res;
+    }
+  </script>
+</html>
