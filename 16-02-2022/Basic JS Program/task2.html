@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convert Seconds into Hours Minutes Seconds</title>
+  </head>
+  <body>
+    <div>
+      <label for="seconds">Enter First Number :</label>
+      <input type="number" id="seconds" /><br />
+      <input type="button" value="Convert In Time" onclick="secondsToHMS()" />
+    </div>
+    <div id="output"></div>
+    <script>
+      function secondsToHMS() {
+        let totalSeconds = document.getElementById("seconds").value;
+        let result = document.getElementById("output");
+        let h = Math.floor(totalSeconds / 3600);
+        let m = Math.floor((totalSeconds % 3600) / 60);
+        let s = Math.floor((totalSeconds % 3600) % 60);
+
+        let hoursDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : "";
+        let minutesDisplay =
+          m > 0 ? m + (m == 1 ? " minute " : " minutes ") : "";
+        let secondsDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+
+        result.innerHTML = hoursDisplay + minutesDisplay + secondsDisplay;
+      }
+    </script>
+  </body>
+</html>

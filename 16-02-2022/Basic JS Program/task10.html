@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maximum Value from 3 Numbers</title>
+  </head>
+  <body>
+    <div>
+      <label for="fvalue">Enter First Number :</label>
+      <input id="fvalue" type="number" /><br />
+      <label for="svalue">Enter Second Number:</label>
+      <input id="svalue" type="number" /><br />
+      <label for="tvalue">Enter Third Number :</label>
+      <input id="tvalue" type="number" /><br />
+      <input type="button" id="findmax" value="Find Max" onclick="larger()" />
+    </div>
+    <div id="output"></div>
+    <script type="text/Javascript">
+      function larger() {
+        let num1 = document.getElementById("fvalue").value;
+        let num2 = document.getElementById("svalue").value;
+        let num3 = document.getElementById("tvalue").value;
+        const ans = document.getElementById("output");
+
+        if(num1 >= num2 && num1 >= num3) {
+            largest = num1;
+        }
+        else if (num2 >= num1 && num2 >= num3) {
+            largest = num2;
+        }
+        else {
+                largest = num3;
+        }
+
+        ans.innerHTML = "The Largest Number is " + largest;
+
+      }
+    </script>
+  </body>
+</html>

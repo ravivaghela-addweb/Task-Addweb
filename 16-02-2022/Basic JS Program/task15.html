@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum Of Digits</title>
+  </head>
+  <body>
+    <div>
+      <label for="num">Enter Digit :</label>
+      <input type="number" id="num" /><br />
+      <input type="button" value="Sum" onclick="sumOfNumbers()" />
+    </div>
+    <div id="output"></div>
+    <script>
+      function sumOfNumbers() {
+        let number = document.getElementById("num").value;
+        let result = document.getElementById("output");
+        var sum = 0;
+        while (number != 0) {
+          sum = sum + (number % 10);
+          number = parseInt(number / 10);
+        }
+        result.innerHTML = `The Numbers of Sum : ${sum}`;
+      }
+    </script>
+  </body>
+</html>

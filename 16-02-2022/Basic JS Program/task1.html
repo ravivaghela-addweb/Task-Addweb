@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate The Area of Triangle</title>
+  </head>
+  <body>
+    <div>
+      <label for="base">Enter Base :</label>
+      <input type="text" id="v1" /><br />
+      <label for="height">Enter Height :</label>
+      <input id="v2" type="text" /><br />
+      <input
+        type="button"
+        id="areaOfTriangle"
+        value="Get Area Of Triangle"
+        onclick="findTriangle()"
+      />
+    </div>
+    <div id="output"></div>
+    <script>
+      function findTriangle() {
+        var base = parseInt(document.getElementById("v1").value);
+        var height = parseInt(document.getElementById("v2").value);
+        var result = document.getElementById("output");
+        var area = (base * height) / 2;
+
+        // result.innerHTML = `Base: ${base}`;
+        // result.innerHTML = `Height: ${height}`;
+        result.innerHTML = `Base : ${base} <br> Height : ${height} <br> Area : ${area}`;
+      }
+    </script>
+  </body>
+</html>

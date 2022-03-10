@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Gross Salary</title>
+  </head>
+  <body>
+    <div>
+      <label for="basicSalary">Enter Basic Salary :</label>
+      <input type="number" id="basicSalary" /><br />
+      <input
+        type="button"
+        value="Calculate Gross Salary"
+        onclick="calGrossSalary()"
+      />
+    </div>
+    <div id="output1"></div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+    <script>
+      function calGrossSalary() {
+        var basic = Number(document.getElementById("basicSalary").value);
+        var showDA = document.getElementById("output1");
+        var ShowHRA = document.getElementById("output2");
+        var salary = document.getElementById("output3");
+
+        var hra = 0.2 * basic;
+        var da = 0.4 * basic;
+
+        var gross = basic + hra + da;
+        showDA.innerHTML = `Your DA = ${da}<br>`;
+        ShowHRA.innerHTML = `Your HRA = ${hra}`;
+        salary.innerHTML = `Your Gross Salary =  ${gross}`;
+      }
+    </script>
+  </body>
+</html>

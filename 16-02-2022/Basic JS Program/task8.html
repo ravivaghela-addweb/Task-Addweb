@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Makrsheet</title>
+  </head>
+  <body>
+    <div>
+      <label for="mark1">Enter English Marks :</label>
+      <input type="text" id="mark1" /><br />
+      <label for="mark2">Enter Computer Marks :</label>
+      <input type="text" id="mark2" /><br />
+      <label for="mark3">Enter Math Marks :</label>
+      <input type="text" id="mark3" /><br />
+      <input
+        type="submit"
+        id="findAvgPer"
+        value="Calculate Percentage"
+        onclick="findAvgPer()"
+      />
+    </div>
+    <div id="output"></div>
+    <script>
+      function findAvgPer() {
+        var m1 = Number(document.getElementById("mark1").value);
+        var m2 = Number(document.getElementById("mark2").value);
+        var m3 = Number(document.getElementById("mark3").value);
+        var result = document.getElementById("output");
+        var totalmarks = m1 + m2 + m3;
+        var percentage = totalmarks / 3 + "%";
+        result.innerHTML = `Your Result is ${percentage}`;
+      }
+    </script>
+  </body>
+</html>

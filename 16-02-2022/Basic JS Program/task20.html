@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count Numbers</title>
+  </head>
+  <body>
+    <div>
+      <label for="num">Enter Number :</label>
+      <input type="text" id="num" /><br />
+      <input type="button" value="Count Digits" onclick="countDigit()" />
+    </div>
+    <div id="output"></div>
+    <script>
+      function countDigit() {
+        let number = Number(document.getElementById("num").value);
+        let result = document.getElementById("output");
+        let count = 0;
+        while (number != 0) {
+          number = Math.floor(number / 10);
+          ++count;
+        }
+        result.innerHTML = `The Total Digit in Textbox is ${count}`;
+      }
+    </script>
+  </body>
+</html>

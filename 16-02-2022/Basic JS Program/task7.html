@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Loss And Profit From Cost Price And Selling Price</title>
+  </head>
+  <body>
+    <div>
+      <label for="costPrice">Enter Cost Price :</label>
+      <input type="text" id="costPrice" /><br />
+      <label for="sellingPrice">Enter Selling Price :</label>
+      <input type="text" id="sellingPrice" /><br />
+      <input
+        type="button"
+        id="findLossAndProfit"
+        value="Get Loss And Profit"
+        onclick="getLossProfit()"
+      />
+    </div>
+    <div id="output"></div>
+    <div id="percentage"></div>
+    <div id="nothing"></div>
+    <script>
+      function getLossProfit() {
+        const costPrice = document.getElementById("costPrice").value;
+        const sellingPrice = document.getElementById("sellingPrice").value;
+        const result = document.getElementById("output");
+        const percentage = document.getElementById("percentage");
+        const nothing = document.getElementById("nothing");
+        // const costPrice = costPriceDOM.value;
+        // const sellingPrice = sellingPriceDOM.value;
+        // result.addEventListener("click", function () {}
+        if (sellingPrice > costPrice) {
+          const profit = sellingPrice - costPrice;
+          const profit_percent = ((profit / costPrice) * 100).toFixed(2);
+          result.innerHTML = "Profit : " + profit;
+          percentage.innerHTML = "Profit Percentage : " + profit_percent;
+        }
+        if (sellingPrice < costPrice) {
+          const loss = costPrice - sellingPrice;
+          const loss_percent = ((loss / costPrice) * 100).toFixed(2);
+          result.innerHTML = "Loss : " + loss;
+          percentage.innerHTML = "Loss Percentage : " + loss_percent;
+        }
+        if (sellingPrice == costPrice) {
+          nothing.innerHTML = "No Profit No Loss";
+        }
+        // });
+      }
+    </script>
+  </body>
+</html>

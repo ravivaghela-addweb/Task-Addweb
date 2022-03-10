@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conver Coins into Rs</title>
+  </head>
+  <body>
+      <label for="coins50">How Many 50 Paisa Coins? : </label>
+      <input type="number" id="coins50" /><br /><br>
+      <label for="coins25">How Many 25 Paisa Coins? : </label>
+      <input type="number" id="coins25" /><br /><br>
+      <label for="coins20">How Many 20 Paisa Coins? : </label>
+      <input type="number" id="coins20" /><br /><br>
+      <label for="coins10">How Many 10 Paisa Coins? : </label>
+      <input type="number" id="coins10" /><br /><br>
+      <label for="coins5">How Many 5 Paisa Coins? : </label>
+      <input type="number" id="coins5" /><br /><br>
+      <label for="coins2">How Many 2 Paisa Coins? : </label>
+      <input type="number" id="coins2" /><br /><br>
+      <label for="coins1">How Many 1 Paisa Coins? : </label>
+      <input type="number" id="coins1" /><br /><br>
+      <input
+        type="button"
+        value="Convert Into Rs"
+        onclick="convertIntoRs()"
+      />
+    </div>
+    <div id="output"></div>
+    <script>
+      function convertIntoRs(){
+        let coins50DOM = Number(document.getElementById("coins50").value);
+        let coins25DOM = Number(document.getElementById("coins25").value);
+        let coins20DOM = Number(document.getElementById("coins20").value);
+        let coins10DOM = Number(document.getElementById("coins10").value);
+        let coins5DOM = Number(document.getElementById("coins5").value);
+        let coins2DOM = Number(document.getElementById("coins2").value);
+        let coins1DOM = Number(document.getElementById("coins1").value);
+        let result = document.getElementById("output");
+        let coins1 = coins1DOM, 
+            coins2 = coins2DOM * 2,
+            coins5 = coins5DOM * 5,
+            coins10 = coins10DOM * 10,
+            coins20 = coins20DOM * 20,
+            coins25 = coins25DOM * 25,
+            coins50 = coins50DOM * 50;
+
+
+        let total = coins1 + coins2 + coins5 + coins10 + coins20 + coins25 + coins50;
+    
+        result.innerHTML = ` You Have total ${total} ₹`;
+      }
+    </script>
+  </body>
+</html>

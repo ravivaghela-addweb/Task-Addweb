@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Search</title>
+</head>
+<body>
+    <p id="output"></p>
+    <script>
+        function linearSearch(){
+            let output = document.getElementById("output");
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] === number)
+                    return i;
+            }
+            return -1
+        }
+        let arr = [2,5,8,10,12,14,16,18,20];
+        let number = 10;
+        let result = linearSearch(arr, number);
+        (result == -1)
+        ? output.innerHTML = `Element is not present in array`
+        : output.innerHTML = `Element is Present at Index ` + result;
+    </script>
+</body>
+</html>

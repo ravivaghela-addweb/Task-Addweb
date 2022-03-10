@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Positive, Negative and Zero Number in Array</title>
+</head>
+<body>
+    <div>
+        <label for="number">Enter Number :</label>
+        <input type="number" id="number" />
+        <input type="button" value="Add Number" onclick="add()" />
+        <p id="array">Array :</p>
+    </div>Count Zero, Positive and Negative Digit in Array : 
+    <input type="button" onclick="count()" value="Count" />
+    <p id="output"></p>
+    <script>
+        let j = 0;
+        let arr = Array();
+        function add() {
+          document.getElementById("array").innerHTML = "Array :";
+          arr[j] = Number(document.getElementById("number").value);
+  
+          j++;
+          document.getElementById("number").value = "";
+          document.getElementById("array").innerHTML += '['+arr+']';
+        }
+        function count(){
+            let result = document.getElementById("output");
+            let pos = 0, neg = 0, zero = 0; 
+            for(let i=0; i<arr.length; i++){
+                if(arr[i]>0){
+                    pos++;
+                    pos;
+                }
+                else if(arr[i]==0){
+                    zero++;
+                    zero;
+                }
+                else
+                {
+                    
+                    neg++;
+                    neg;
+                }
+                    
+            }
+            result.innerHTML = `Total Positive Digit in Array ${pos} <br>
+                                Total Negative Digit in Array ${neg} <br>
+                                Total Zero Digit in Array ${zero} <br>`
+        }
+    </script>
+</body>
+</html>

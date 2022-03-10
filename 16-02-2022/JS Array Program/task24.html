@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search</title>
+</head>
+<body>
+    <script>
+        let arr = [2,5,88,7,6,10];
+        function binarySearch(arr, number) {
+            let start = 0;
+            let end = arr.length - 1;
+            let mid=Math.floor((start + end)/2);
+            
+            while(arr[mid] !== number && start <= end)
+            {
+                if(arr[mid] < number)
+                    start = mid + 1;
+                else 
+                    end = mid -1;
+                mid=Math.floor((start + end)/2);
+            }
+            return arr[mid] === number ? mid : -1;
+        }
+        document.write(binarySearch(arr, 88));
+
+    </script>									    
+</body>
+</html>

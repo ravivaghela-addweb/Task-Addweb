@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfect Number Or Not</title>
+  </head>
+  <body>
+    <body>
+      <div>
+        <label for="num">Enter Number :</label>
+        <input type="number" id="num" /><br />
+        <input type="button" value="Check" onclick="isPerfect()" />
+      </div>
+      <div id="output"></div>
+    <script>
+      function isPerfect() {
+        let number = Number(document.getElementById("num").value);
+        let result = document.getElementById("output");
+        var temp = 0;
+        for(var i=1;i<=number/2;i++)
+        {
+            if(number%i === 0)
+            {
+                temp += i;
+            }
+        }
+      
+        if(temp === number && temp !== 0)
+        {
+            result.innerHTML = `It is a Perfect Number`;
+        } 
+        else
+        {
+          result.innerHTML = `It is Not a Perfect Number`;
+        }   
+      } 
+    </script>
+  </body>
+</html>

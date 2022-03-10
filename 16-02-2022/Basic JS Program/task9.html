@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check Uppercase Lowercase</title>
+  </head>
+  <body>
+    <div>
+      <label for="txt">Enter Text :</label>
+      <input type="text" id="txt" /><br />
+      <input type="submit" onclick="check()" />
+    </div>
+    <div id="output"></div>
+    <script>
+      function check() {
+        let ch = document.getElementById("txt").value;
+        let result = document.getElementById("output");
+        if (ch >= "A" && ch <= "Z") {
+          result.innerHTML = ch + " is an Uppercase Character <br>";
+        } else if (ch >= "a" && ch <= "z") {
+          result.innerHTML = ch + " is an Lowercase Character <br>";
+        } else {
+          result.innerHTML = ch + " is not an Alhabetic Character <br>";
+        }
+      }
+    </script>
+  </body>
+</html>
