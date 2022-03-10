@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <!-- <link rel="stylesheet" href="form.css" /> -->
+    <style>
+      div {
+        background-color: blanchedalmond;
+      }
+
+      textarea {
+        border-radius: 10px;
+        padding: 20px;
+        margin: 30px;
+      }
+
+      .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>This is HTML Forms Tutorial</h2>
+      <form>
+        <div>
+          <label for="myName" id="name">Name : </label
+          ><input type="text" name="myName" />
+        </div>
+        <br />
+        <div>
+          <label for="role">Role : </label>
+          <input type="text" name="myRole" id="role" />
+        </div>
+        <br />
+        <div>
+          <label for="email">Email : </label>
+          <input type="text" name="myEmail" id="email" />
+        </div>
+        <br />
+        <div>
+          <label for="salary">Salary : </label
+          ><input type="number" name="mySalary" id="salary" />
+        </div>
+        <br />
+        <div>
+          <label for="joindate">Joining Date : </label>
+          <input type="date" name="myJoinDate" id="joindate" />
+        </div>
+        <br />
+        <div>
+          <label for="gender" id="gender">Gender : </label
+          ><input type="radio" name="myGender" /> Male
+          <input type="radio" name="myGender" /> Female
+          <input type="radio" name="myGender" /> Other
+        </div>
+        <br />
+        <div>
+          <label for="completedegree" id="completedegree"
+            >Completed Graduation :
+          </label>
+          <input type="checkbox" value="completeDegree" id="completedegree" />
+        </div>
+        <br />
+        <div>
+          <label for="laptop" id="laptop" class="laptop"
+            >Select Laptop :
+          </label>
+          <select name="myLaptop" id="laptop">
+            <option value="hp" selected>HP Pavilion</option>
+            <option value="lenovo">Lenovo Ideapad</option>
+            <option value="asus">Asus TUF</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <label for="myText" id="mybiotext">Write About Yourself : </label>
+          <br /><textarea name="myText" cols="50" rows="5"></textarea>
+        </div>
+        <br />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <form>
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Upload Image
+          </label>
+          <input
+            id="file-upload"
+            name="upload_cont_img"
+            type="file"
+            style="display: none"
+          />
+        </form>
+        <br />
+        <div>
+          <input type="submit" value="Submit" id="submit" />
+          <input type="reset" value="Reset" id="reset" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
