@@ -1,4 +1,4 @@
-<h2>Program 32 : Print Name of Month when the Number Input</h2>
+<h2>Program 32 : Print Name of Month When The Input Number</h2>
 <form method="post">
     <label for="num">Enter Month Number : </label>
     <input type="text" name="number" id="num" required /><br />
@@ -8,7 +8,7 @@
 if (isset($_POST["submit"])) 
 {
     $number = $_POST["number"];
-    // echo "You Entered Month Number : $number<br/>";
+    // echo "Entered Month Number : $number<br/>";
     switch ($number) {
         case 1:
             echo ("$number Number Month is January");

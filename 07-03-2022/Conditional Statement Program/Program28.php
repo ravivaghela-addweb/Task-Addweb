@@ -8,7 +8,7 @@
 if (isset($_POST["submit"]))
 {
     $number = $_POST["number"];
-    echo "You Entered Number : $number";
+    echo "Entered Number : $number";
     $result = ($number % 2 == 0) ?
         "$number is Even Number" : "$number is Odd Number";
 

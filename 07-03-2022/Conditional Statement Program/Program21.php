@@ -1,4 +1,4 @@
-<h2>Program 21 : Check Number is Palndrome or Not</h2>
+<h2>Program 21 : Check Number is Palindrome or Not</h2>
 <form method="post">
     <label for="num">Enter Number :</label>
     <input type="text" name="number" id="num" required /><br />

@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
     $num2 = $_POST["number2"];
     $option = $_POST["option"];
 
-    echo "<br/>Your First Number is $num1 and Second Number is $num2 <br/>";
+    echo "First Number is $num1 and Second Number is $num2 <br/>";
 
     switch ($option) {
         case 'Add':

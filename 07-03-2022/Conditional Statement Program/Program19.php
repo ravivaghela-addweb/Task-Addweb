@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
     $num1 = $_POST["number1"];
     $num2 = $_POST["number2"];
     $num3 = $_POST["number3"];
-    echo "You Entered Numbers = $num1 $num2 $num3<br/>";
+    echo "Entered Numbers = $num1 $num2 $num3<br/>";
     if (($num1 > $num2) && ($num1 > $num3))
         echo "Greatest Number is $num1";
     if (($num2 > $num1) && ($num2 > $num3))

@@ -8,7 +8,7 @@
 if (isset($_POST["submit"])) 
 {
     $txt = $_POST["txt"];
-    // echo "You Entered Color Charactor : $txt<br/>";
+    // echo "Entered Color Charactor : $txt<br/>";
     switch ($txt) {
         case 'g' :
         case 'G':

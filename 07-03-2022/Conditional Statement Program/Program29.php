@@ -17,7 +17,7 @@ if (isset($_POST["submit"]))
     $n2 = $_POST["number2"];
     $n3 = $_POST["number3"];
     $n4 = $_POST["number4"];
-    echo "You Entered Total 4-Numbers : $n1 $n2 $n3 $n4<br/>";
+    echo "Entered Total 4-Numbers : $n1 $n2 $n3 $n4<br/>";
 
     $max = ($n1 > $n2 && $n1 > $n3 && $n1 > $n4) ?
         $n1 : (($n2 > $n3 && $n2 > $n4) ?

@@ -4,7 +4,7 @@
        The allowances HRA(%) ,DA (%), PF and Medical are also given.<br/>
        Add the HRA and DA in the Basic Salary but deduct PF and Medical from the Salary.<br/>";
 
-       echo "===========================<br/>";
+       echo "================================<br/>";
 
        $basic = 25000;
        echo "Basic Salary = $basic";

@@ -9,9 +9,9 @@ if (isset($_POST["submit"])) {
     $txt = $_POST["txt"];
 
     if ($txt == 'g' || $txt == 'G')
-        echo "$txt stand Green Color";
+        echo "$txt Stands for Green Color";
     else if ($txt == 'w' || $txt == 'W')
-        echo "$txt stand for White Color";
+        echo "$txt Stands for White Color";
     else
         echo "$txt Not a Valid Color";
 }

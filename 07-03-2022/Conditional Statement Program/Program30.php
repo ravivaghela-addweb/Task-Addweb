@@ -31,7 +31,7 @@ if (isset($_POST["submit"]))
     $percentage = $sum / 5;
 
     echo "Total Marks = $sum <br />";
-    echo "You Obtained Marks $sum out of 500 Marks<br/>";
+    echo "Your Obtained Marks $sum out of 500 Marks<br/>";
     echo "Percentage of Total Marks = $percentage<br/>";
 
     if ($percentage >= 85)
