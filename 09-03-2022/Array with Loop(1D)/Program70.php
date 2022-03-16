@@ -14,4 +14,10 @@
         echo "$number, ";
         
     }
+    // echo "<br/>";
+    // var_dump($names);
+    // echo "<br/>";
+    // print_r($names)
+
+
 ?>
