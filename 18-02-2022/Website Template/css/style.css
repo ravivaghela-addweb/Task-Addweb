@@ -220,7 +220,7 @@ header .icons #menu-bars{
 
 .dishes .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
     gap:1.5rem;
 }
 
@@ -360,7 +360,7 @@ header .icons #menu-bars{
 
 .menu .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
     gap:1.5rem;
 }
 
