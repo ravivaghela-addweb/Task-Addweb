@@ -2,7 +2,6 @@
     if(!empty($_COOKIE))
     {
         $username = $_COOKIE["username"];
-        // header('Location:login.php');
         echo "Username : $username";
         echo "<br/>";
         echo "<form method='post'>
@@ -12,12 +11,12 @@
         {
             setcookie( "username","", time()-3600,"/");
             setcookie( "password","", time()-3600,"/");
-            header('refresh:1;url=login.php');
+            header('refresh:0.3;url=loginCookie.php');
         }
     }
     else if(empty($_COOKIE))
     {
-        header('refresh:1;url=login.php');
+        header('refresh:0.3;url=loginCookie.php');
     }
         
 ?>
