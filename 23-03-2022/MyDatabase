@@ -1,0 +1,341 @@
+Create SampleDatabase2
+Create 10 Tables With Queries
+Create 10 Tables With 6 Columns and 10 Rows  
+
+----------------------------------------------------------------------
+Change Table Name After Creating Tables Differernt Name
+----------------------------------------------------------------------
+ALTER TABLE Persons RENAME TO Persons_Details;
+ALTER Table Patients RENAME TO Patients_Details;
+
+======================================================================
+1) Create Table Persons_Details
+----------------------------------------------------------------------
+CREATE TABLE Persons_Details
+(Person_ID bigint(100) auto_increment Primary Key, 
+Full_Name varchar(200) NOT NULL, 
+Email varchar(300) NOT NULL, 
+Address varchar(500)NOT NULL, 
+City varchar(200) NOT NULL, 
+State varchar(100) NOT NULL);
+
+----------------------------------------------------------------------
+Insert Values in Persons_Details Table
+----------------------------------------------------------------------
+INSERT INTO Persons_Details (Full_Name, Email, Address, City, State) VALUES
+('Ravi Vaghela', 'ravi.addweb@gmail.com', 'Indiranagar, AT-PO:- Kani', 'Patan', 'Gujarat'), 
+('Jinal Shah', 'jinal.addweb@gmail.com', 'Shantivan, AT-PO:- Paldi','Ahmedabad','Gujarat'),
+('Aaqib Shaikh', 'aaqib.addweb@gmail.com', 'Lucky Park, AT-PO:- Paldi','Ahmedabad','Gujarat'),
+('Nidhi Jain', 'nidhi.addweb@gmail.com', 'Kharakuva, AT-PO:-Dehgam ','Dehgam','Gujarat'),
+('Bharti Choksi', 'Bharti@gmail.com', 'VC Road, AT-PO:- Patan','Patan','Gujarat'),
+('Vijay Sharma', 'vijay@gmail.com', 'Khusinagar, AT-PO:- Sidhpur','Sidhpur','Gujarat'),
+('Keshav Kapoor', 'keshav@gmail.com', 'Infosys Building, AT-PO:- Sector-07','Pune','Maharashtra'),
+('Rahul Ghatad', 'rahul@gmail.com', 'Dharavi, AT-PO:- Cental Mumbai','Mumbai','Maharashtra'),
+('Pruthvi Keshva', 'pruthvi@gmail.com', 'Sector-4, AT-PO:- Noida','Noida','Uttar Pradesh'),
+('Khushi Karmani', 'khushi@gmail.com', 'Taj Mahal Road, AT-PO:- Agra','Agra','Uttar Pradesh');
+
+----------------------------------------------------------------------
+Retrive All Data From Persons_Details Table 
+----------------------------------------------------------------------
+select * from Persons_Details;
+===============================================================================================
+2) Create Table Patients_Details
+----------------------------------------------------------------------
+CREATE TABLE Patients_Details
+(Patient_ID bigint(100) Unique, 
+Patient_Name varchar(200) NOT NULL, 
+Ward_No varchar(300) NOT NULL, 
+Hospital varchar(500)NOT NULL, 
+Admit_Date Date NOT NULL, 
+Discharge_Date Date NOT NULL);
+
+---------------------------------------------------------------------
+Insert Values in Patients_Details Table
+---------------------------------------------------------------------
+
+INSERT INTO Patients_Details (Patient_ID, Patient_Name, Ward_No, Hospital, Admit_Date, Discharge_Date) VALUES
+(101, 'Alex Steve', 'A100', 'Civil Hospital, Ahemdabad', '2021-10-12', '2022-01-21'),
+(102, 'Akash Gupta', 'A200', 'Government Medical, Dharpur', '2010-12-01', '2011-03-03'),
+(103, 'Jetsav Jha', 'A300', 'Krishna Hospital, Patan', '2020-10-23', '2021-12-22'),
+(104, 'Menka Vohra', 'A400', 'Shrusti Hospital, Unjha', '2010-12-31', '2011-02-03'),
+(105, 'Rinkesh Rathod', 'A500', 'Chakshu Hospital, Surat', '2010-12-31', '2011-02-03'),
+(106, 'Mayank Patel', 'A600', 'Universe Hospital, Mehsana', '2015-02-03', '2018-03-03'),
+(107, 'Venisa Vyash', 'A700', 'Keshav Hospital, Vadodara', '2015-03-03', '2021-12-10'),
+(108, 'Monika Desai', 'A800', 'SCG Multispecialist, Ahmedabad', '2000-05-10', '2001-03-18'),
+(109, 'Priyank Viswas', 'A900', 'Acadian Medical Center, Ahmedabad', '2002-12-03', '2005-12-03'),
+(110, 'Vyomesh Gandhi', 'A1000', 'Caldwell UNC Healthcare, Mumbai', '2003-12-31', '2004-01-29');
+
+--------------------------------------------------------------------
+Retrive All Data From Patients_Details Table 
+--------------------------------------------------------------------
+select * from Patients_Details;
+=====================================================================================================
+3) Create Table Drivers_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Drivers_Details 
+(Driver_ID bigint(100) auto_increment Primary Key,
+Driver_Name varchar(200) NOT NULL,
+Contact_Number bigint(10) NOT NULL,
+Driver_Address varchar(500)NOT NULL,
+Driver_Age int(3) NOT NULL,
+Driver_License varchar(20) NOT NULL Unique);
+
+-------------------------------------------------------------------
+Insert Values in Drivers_Details Table
+--------------------------------------------------------------------
+INSERT INTO Drivers_Details (Driver_Name, Contact_Number, Driver_Address, Driver_Age, Driver_License) 
+VALUES ('Rakesh Thakur', 9874561230, 'Sidhpur Cross Road, Patan', 42, 'ABC12345'),
+('Ahemad Patel', 7894561237, 'Rani ki Vav Road, Patan', 40, 'BCD23456'),
+('Mukesh Rathod', 7417417410, 'Highway Road, Unjha', 50, 'EFG34567'),
+('Ranjit Thakor', 8521478523, 'Randhanpur Cross Road, Mahesana', 30, 'HIJ45678'),
+('Rakesh Ghatad', 8524789654, 'Iscon Cross Road, Ahmedabad', 37, 'KLM56789'),
+('Visnu Patel', 7485961425, 'TB Cross Road, Patan', 40, 'OPQ67891'),
+('Rohit Sharma', 8574964567, 'Rajmandir, Deesa', 42, 'RST78910'),
+('Mayank Agraval', 8576945879, 'City Point, Patan', 43, 'UVW89101'),
+('Rahul Purohit', 9371824673, 'Rishikesh Society, Sidhpur', 45, 'XYZ91011'),
+('Rinkesh Rohini', 9173822426, 'Vankapur Road, Kadi', 48, 'ABC98765');
+
+---------------------------------------------------------------------
+Retrive All Data From Drivers_Details Table 
+---------------------------------------------------------------------
+select * from Drivers_Details;
+=====================================================================================================
+4) Create Table Jailers_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Jailers_Details 
+(Jailer_ID bigint(100) auto_increment Primary Key,
+Jailer_Name varchar(200) NOT NULL,
+Jailer_Contact bigint(10) NOT NULL Unique,
+Jailer_Posting varchar(500)NOT NULL,
+Jailer_Age int(3) NOT NULL,
+Jailer_Qualification varchar(20) Default '12th Pass');
+
+--------------------------------------------------------------------
+Insert Values in Jailers_Details Table
+--------------------------------------------------------------------
+INSERT INTO Jailers_Details (Jailer_Name, Jailer_Contact, Jailer_Posting, Jailer_Age, Jailer_Qualification) 
+VALUES ('Rajesh Thakur', 9874561230, 'Sujnipur Jail, Patan', 42, 'Graduation Degree'),
+('Ahemad Shaikh', 7894561237, 'Patan Main Jail, Patan', 40, 'Master Degree'),
+('Mukesh Rana', 7417417410, 'Sabarmati Jail, Ahmedabad', 50, '12th Pass'),
+('Ranjit Patel', 8521478523, 'Randhanpur Jail, Mahesana', 30, 'Graduation Degree'),
+('Rakesh Rathod', 8524789654, 'Mumbai Jail, Mumbai', 37, 'Phd Degree'),
+('Narayan Soni', 8576945879, 'Noida Jail, Noida', 43, 'Master Degree'),
+('Rohan Trivedi', 9371824673, 'Sidhpur Jail, Sidhpur', 45, '12th Pass'),
+('Rinkesh Rohini', 9173822426, 'Vankapur Jail, Kadi', 48, '12th Pass');
+
+-----------------------------------------------------------------------------
+Set Jailer_Qualification Default Value 
+---------------------------------------------------------------------
+INSERT INTO Jailers_Details (Jailer_Name, Jailer_Contact, Jailer_Posting, Jailer_Age) 
+VALUES
+('Vinod Vyash', 7485961425, 'Pune Jail, Pune', 40),
+('Keshav Rohinya', 8574964567, 'Deesa Jail, Deesa', 42);
+
+---------------------------------------------------------------------
+Retrive All Data From Jailers__Details Table 
+---------------------------------------------------------------------
+select * from Jailers_Details;
+=====================================================================================================
+
+5) Create Table Prisoners_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Prisoners_Details 
+(Prisoner_ID bigint(100) auto_increment Primary Key,
+Prisoner_Name varchar(200) NOT NULL,
+Prisoner_Address varchar(500) NOT NULL,
+Prisoner_Age int(3) Not NULL,
+Punishment varchar(1000) NOT NULL,
+Crimes varchar(1000) NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Prisoners_Details Table
+--------------------------------------------------------------------
+INSERT INTO Prisoners_Details (Prisoner_Name, Prisoner_Address, Prisoner_Age, Punishment, Crimes) 
+VALUES ('Rajesh Thakur', 'TB Cross Road, Patan', 42, '5 Year Jail', 'Attempt to Murder'),
+('Ahemad Shaikh', 'Main Bazar, Patan', 40, '2 Months Jail', 'Cheating'),
+('Mukesh Rana', 'Jodhapur Road, Ahmedabad', 50, '1 Year Jail', 'Chain Snatching or Theft'),
+('Ranjit Patel', 'Randhanpur Cross Road, Mahesana', 30, '10 Year Jail', 'Assualting'),
+('Rakesh Rajput', 'Ayodhya, Uttar Pradesh', 37, '50 Years Jail', 'Communal Hatred'),
+('Alex Steve', 'Secto-25, Noida', 43, 'Hanging to Death', 'Rape'),
+('Rohan Trivedi', 'Khali Cross Road, Bhopal', 45, '5 Months Jail', 'Theft'),
+('Rinkesh Rohini', 'Vankapur Road, Indore', 48, '40 Years Jail', 'Atrocities on Lower Caste'),
+('Sambhu Choksi', 'Khali Road, Palanpur', 45, '5 Years Jail', 'Attempt Murder'),
+('Rajesh Shukla', 'Vankapur Road, Kadi', 48, '5 Lakhs Fine', 'Fraud');
+
+---------------------------------------------------------------------
+Retrive All Data From Prisoners_Details Table 
+---------------------------------------------------------------------
+select * from Prisoners_Details;
+
+=====================================================================================================
+6) Create Table Orders_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Orders_Details 
+(Order_ID bigint(100) auto_increment Primary Key,
+Customer_ID bigint(100) Unique,
+Customer_Name varchar(200) NOT NULL,
+Quantity int(10) NOT NULL,
+Total_Price bigint(100) Not NULL,
+Time_of_Delivery DATETIME NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Orders_Details Table
+--------------------------------------------------------------------
+INSERT INTO Orders_Details (Customer_ID, Customer_Name, Quantity, Total_Price, Time_of_Delivery) 
+VALUES (101,'Rajesh Thakur', 100, 10000, '2022-01-10'),
+(102, 'Ahemad Shaikh', 200, 20000, '2021-12-10'),
+(103, 'Mukesh Rana',150, 15000, '2018-02-05'),
+(104, 'Ranjit Patel',50, 5000, '2020-12-07'),
+(105, 'Rakesh Rajput', 225, 22500, '2017-06-25'),
+(106, 'Alex Steve', 250, 25500, '2019-12-17'),
+(107, 'Rohan Trivedi', 150, 15500, '2021-09-18'),
+(108, 'Rinkesh Rohini', 500, 50000, '2020-11-28'),
+(109, 'Sambhu Choksi', 700, 70000, '2016-12-10'),
+(110, 'Rajesh Shukla', 800, 80000, '2012-12-12');
+
+---------------------------------------------------------------------
+Retrive All Data From Orders_Details Table 
+---------------------------------------------------------------------
+select * from Orders_Details;
+=====================================================================================================
+7) Create Table Subjects_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Subjects_Details
+(Subject_ID bigint(100) auto_increment Primary Key,
+Subject_Name varchar(200) NOT NULL,
+Stream varchar(100) NOT NULL,
+Course varchar(100) NOT NULL,
+Class varchar(10) NOT NULL,
+Assign_Teacher varchar(100) NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Subjects_Details Table
+--------------------------------------------------------------------
+INSERT INTO Subjects_Details (Subject_Name, Stream, Course, Class, Assign_Teacher) 
+VALUES ('Physics', 'Science', 'B.Sc', 'A2', 'Dr.Vishal Modi'),
+('Maths', 'Computer Scince', 'M.E', 'A1', 'Viral Vyash'),
+('English','Commerce', '12th', 'C3', 'Vaishali Patel'),
+('Gujarati', 'Primary', '5th', 'D10', 'Rita Patel'),
+('Sanskrit', 'Secondary', '10th', 'B11', 'Santoshi Patel'),
+('Social Science', 'Secondary', '8th', 'C12', 'Suresh Yadav'),
+('Python', 'Computer Science','M.Sc(CA & IT)', 'A', 'Viral Vyash'),
+('Andorid', 'Computer Science', 'M.Sc(CA & IT)', 'A', 'Badal Kothari'),
+('AI', 'Computer Science', 'M.Sc(CA & IT)', 'B1', 'Hinal Prajapti'),
+('Algorithms', 'Computer Science', 'M.Sc(CA & IT)', 'B2', 'Kirit Patel');
+
+---------------------------------------------------------------------
+Retrive All Data From Subjects_Details Table 
+---------------------------------------------------------------------
+select * from Subjects_Details;
+=====================================================================================================
+
+8) Create Table Schools_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Schools_Details
+(School_ID bigint(100) auto_increment Primary Key,
+School_Name varchar(200) NOT NULL,
+Contact_Number bigint(20) NOT NULL,
+Email varchar(100) NOT NULL Unique,
+Address varchar(500) NOT NULL,
+School_Type varchar(100) NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Schools_Details Table
+--------------------------------------------------------------------
+INSERT INTO Schools_Details (School_Name, Contact_Number, Email, Address, School_Type) 
+VALUES ('Niketan Boys Schools', 7412589630, 'niketan@gmail.com', 'Rajpur Road, Patan', 'Boys School'),
+('Krishna School of Science', 7894569871, 'krishnaschool@gmail.com', 'Hanshapur Road, Patan', 'Boys and Girl School'),
+('Gomati School', 7418529631, 'gomati@gmail.com', 'Gandhi Chaowk, Unjha', 'Girls School'),
+('Kani Anupam Primary School', 9632587413, 'kanischool@gmail.com', 'Kani, Patan', 'Girls and Boys School'),
+('Visakha Science School', 8523691789, 'visakhaschool@gmail.com', 'Balisana Road Circle, Unjha', 'Girls School'),
+('Vidhyalay School', 8547965897, 'vidhyalay@gmail.com', ' Vidyalay Road, Mehasana', 'Girls and Boys School'),
+('Vidhyapith School', 8271936497, 'vidhyapith@gmail.com', 'Radhanpur Cross Road, Mehasana', 'Girls and Boys School'),
+('Gurukul School', 8527391492, 'gurukul@gmail.com', 'Gurukul Chaowk, Sidhpur', 'Boys School'),
+('Newton School', 8271057963, 'newtonschool@gmail.com', 'Sarava Road, Patan', 'Boys School'),
+('Tech School', 9484858679, 'techschool@gmail.com', 'Sardar Patel Road, Balisana', 'Girls School');
+
+---------------------------------------------------------------------
+Retrive All Data From Schools_Details Table 
+---------------------------------------------------------------------
+select * from Schools_Details;
+=====================================================================================================
+
+9) Create Table Bank_Account_Details 
+--------------------------------------------------------------------
+
+CREATE TABLE Bank_Account_Details 
+(Account_Number bigint(100) Primary Key,
+Account_Holder varchar(200) NOT NULL,
+Mobile_No bigint(10) NOT NULL Unique,
+Email varchar(100) NOT NULL,
+Transaction_ID bigint(50) Unique,
+Balance bigint(200) NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Bank_Account_Details Table
+--------------------------------------------------------------------
+
+INSERT INTO Bank_Account_Details (Account_Number, Account_Holder, Mobile_No, Email, Balance) VALUES
+(10001, 'Jinal Shah', 9874563210, 'jinalshah@gmail.com', 1000000),
+(10002, 'Ravi Vaghela', 9874578912, 'ravivaghela@gmail.com', 580000),
+(10003, 'Aaqib Shaikh', 7894789987, 'aaqibshaikh@gmail.com', 850000),
+(10004, 'Nidhi Jain', 7894578947,'nidhijain@gmail.com', 750000),
+(10005, 'Vinod Sojit', 8745962134, 'vidod@gmail.com', 870000),
+(10006, 'Pashva Shah', 7411479879, 'pashvashah@gmail.com', 650000),
+(10007, 'Amit Shah', 6543210147, 'amitshah@gmail.com', 560000),
+(10008, 'Preet Jit', 9874569878, 'pritjit@gmail.com', 970000),
+(10009, 'Raj Modi', 8080208020, 'rajmodi@gmail.com', 990000),
+(10010, 'Pashva Samarth', 9020932030, 'pashv@gmail.com', 860000);
+
+---------------------------------------------------------------------
+Retrive All Data From Bank_Account_Details Table 
+---------------------------------------------------------------------
+select * from Bank_Account_Details;
+=====================================================================================================
+10) Create Table Department
+--------------------------------------------------------------------
+
+CREATE TABLE Department(
+Employee_ID bigint(10) auto_increment primary key,
+Department_ID bigint(10) NOT NULL,
+Employee_Name varchar(100) NOT NULL,
+Employee_Role varchar(100) NOT NULL,
+Annual_Package bigint(100) NOT NULL,
+Joining_Date Date NOT NULL);
+
+--------------------------------------------------------------------
+Insert Values in Department Table
+--------------------------------------------------------------------
+
+INSERT INTO Department (Department_ID, Employee_Name, Employee_Role, Annual_Package, Joining_Date) VALUES
+(10001, 'Jinal Shah', 'Full Stack Trainee', 275000, '2022-02-02'),
+(10002, 'Ravi Vaghela', 'Full Stack Trainee', 275000, '2022-02-02'),
+(10003, 'Aaqib Shaikh', 'Full Stack Trainee', 275000, '2022-02-02'),
+(10004, 'Nidhi Jain', 'Full Stack Trainee', 275000, '2022-02-02'),
+(10005, 'Vinod Sojit', 'Software Engineer', 2500000, '2020-10-10'),
+(10006, 'Pashva Shah', 'Web Developer', 500000, '2020-07-01'),
+(10007, 'Amit Shah', 'Manager', 5000000, '2015-10-01'),
+(10008, 'Preet Jit', 'Web Designer', 2000000, '2018-01-25'),
+(10009, 'Raj Modi', 'DevOps', 2500000, '2010-10-15'),
+(10010, 'Pashva Samarth', 'Software Engineer', 1000000, '2020-10-12');
+
+---------------------------------------------------------------------
+Retrive All Data From Department Table 
+---------------------------------------------------------------------
+select * from Department;
+=====================================================================================================
+
+
+
+
+
+
+
+
+
