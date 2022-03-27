@@ -1,0 +1,963 @@
+Use QueryDatabase and it Em[ployee Table for Query Implementation.
+
+================================================================================================================
+
+select * from Employee;
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah     | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain     | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 150000 |       5000 | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah    | Web Developer      |  35000 |       2000 | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah      | Manager            | 300000 |       7000 | 2015-10-01   |               7 |
+|           8 |            50 | IT Department      | Preet          | Web Designer       | 130000 |       6000 | 2018-01-25   |               6 |
+|           9 |            40 | Analyst Department | Raj Modi       | Analyst            | 150000 |       5000 | 2010-10-15   |               5 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  80000 |       3000 | 2020-10-12   |               3 |
+|          11 |            30 | Finance Department | Smit Patel     | Clerk              |  10000 |       2000 | 2021-03-11   |               2 |
+|          12 |            30 | Finance Department | Sweta          | Clerk              |  15000 |       3000 | 2021-03-11   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  20000 |       4000 | 2020-10-10   |               4 |
+|          14 |            10 | Manager Department | Vijay          | Manager            |  70000 |       7000 | 2018-07-03   |               2 |
+|          15 |            40 | Analyst Department | Brijesh Patel  | Analyst            | 220000 |      10000 | 2019-12-30   |               8 |
+|          16 |            40 | Analyst Department | Vansh          | Analyst            | 270000 |      10000 | 2019-10-30   |              10 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+
+=====================================================================================================================================================
+
+51) DISPLAY THE NAMES OF THE SALESMAN WHO EARNS A SALARY MORE THAN THE HIGHEST SALARY OF ANY CLERK
+
+select Employee_Name from Employee where Employee_Job='Salesman' and Salary > 
+(select max(Salary) from Employee where Employee_Job='Clerk');
++----------------+
+| Employee_Name  |
++----------------+
+| Vinod Sojit    |
+| Pashva Samarth |
+| Raju Sharma    |
++----------------+
+
+===========================================================================================================================================
+
+52) DISPLAY THE NAMES OF THE EMPLOYEES WHO EARN HIGHEST SALARY IN THEIR RESPECTIVE DEPARTMENTS.
+
+
+select Employee_Name from Employee as e where Salary = (select max(Salary) from Employee where Department_ID=e.Department_ID);
++---------------+
+| Employee_Name |
++---------------+
+| Vinod Sojit   |
+| Amit Shah     |
+| Preet         |
+| Sweta         |
+| Vansh         |
++---------------+
+
+==========================================================================================================================================
+
+53) DISPLAY THE NAMES OF EMPLOYEES WHO EARN HIGHEST SALARIES IN THEIR RESPECTIVE JOB GROUPS.
+
+select Employee_Name from Employee e where Salary in 
+(select max(Salary) from Employee group by Employee_Job having e.Employee_Job=Employee_Job);
++---------------+
+| Employee_Name |
++---------------+
+| Jinal Shah    |
+| Ravi Vaghela  |
+| Aaqib Shaikh  |
+| Nidhi Jain    |
+| Vinod Sojit   |
+| Pashva Shah   |
+| Amit Shah     |
+| Preet         |
+| Sweta         |
+| Vansh         |
++---------------+
+
+=========================================================================================================================================
+
+54) DISPLAY THE EMPLOYEE NAMES WHO ARE WORKING IN IT Department 
+
+select Employee_Name from Employee where Department_Name='IT Department';
++---------------+
+| Employee_Name |
++---------------+
+| Jinal Shah    |
+| Ravi Vaghela  |
+| Aaqib Shaikh  |
+| Nidhi Jain    |
+| Pashva Shah   |
+| Preet         |
++---------------+
+
+==================================================================================================
+
+55) DISPLAY THE JOB GROUPS HAVING TOTAL SALARY GREATER THEN THE MAXIMUM SALARY FOR MANAGERS.
+
+select Employee_Job, sum(Salary) from Employee group by 
+Employee_Job having sum(Salary) > (select max(Salary) from Employee where Employee_Job='Manager');
++--------------+-------------+
+| Employee_Job | sum(Salary) |
++--------------+-------------+
+| Analyst      |      640000 |
+| Manager      |      370000 |
++--------------+-------------+
+
+============================================================================================================================
+
+56) DISPLAY THE NAMES OF EMPLOYEES FROM 
+    DEPARTMENT NUMBER 10 WITH SALARY GREATER THAN THAT OF ANY EMPLOYEE WORKING IN OTHER DEPARTMENTS
+
+select Employee_Name from Employee e where Department_ID=10 and Salary > 
+any(select Salary from Employee where e.Department_ID!=Department_ID);
++---------------+
+| Employee_Name |
++---------------+
+| Amit Shah     |
+| Vijay         |
++---------------+
+
+
+=================================================================================================================================
+
+57) DISPLAY THE NAMES OF EMPLOYEE FROM DEPARTMENT NUMBER 10 WITH 
+    SALARY GREATER THEN THAT OF ALL EMPLOYEE WORKING IN OTHER DEPARTMENTS
+
+select Employee_Name from Employee as e where Department_ID=10 and Salary > 
+any(select Salary from Employee where e.Department_ID!= Department_ID);
++---------------+
+| Employee_Name |
++---------------+
+| Amit Shah     |
+| Vijay         |
++---------------+
+
+===============================================================================================================================
+
+58) DISPLAY THE NAMES OF EMPLOYEES IN UPPER CASE.
+
+select ucase(Employee_Name) from Employee;
+select upper(Employee_Name) from Employee;
++----------------------+
+| upper(Employee_Name) |
++----------------------+
+| JINAL SHAH           |
+| RAVI VAGHELA         |
+| AAQIB SHAIKH         |
+| NIDHI JAIN           |
+| VINOD SOJIT          |
+| PASHVA SHAH          |
+| AMIT SHAH            |
+| PREET                |
+| RAJ MODI             |
+| PASHVA SAMARTH       |
+| SMIT PATEL           |
+| SWETA                |
+| RAJU SHARMA          |
+| VIJAY                |
+| BRIJESH PATEL        |
+| VANSH                |
++----------------------+
+
+================================================================================================================================
+
+59) DISPLAY THE NAMES OF EMPLOYEES IN LOWER CASE.
+    
+select lower(Employee_Name) from Employee;
+select lcase(Employee_Name) from Employee;
++----------------------+
+| lower(Employee_Name) |
++----------------------+
+| jinal shah           |
+| ravi vaghela         |
+| aaqib shaikh         |
+| nidhi jain           |
+| vinod sojit          |
+| pashva shah          |
+| amit shah            |
+| preet                |
+| raj modi             |
+| pashva samarth       |
+| smit patel           |
+| sweta                |
+| raju sharma          |
+| vijay                |
+| brijesh patel        |
+| vansh                |
++----------------------+
+
+===========================================================================================================================
+
+60) DISPLAY THE NAME OF EMPLOYEES IN PROPER CASE.
+
+Select CONCAT(UPPER(SUBSTRING(Employee_Name,1,1)),LOWER(SUBSTRING(Employee_Name,2))) AS Name from Employee;
++----------------+
+| Name           |
++----------------+
+| Jinal shah     |
+| Ravi vaghela   |
+| Aaqib shaikh   |
+| Nidhi jain     |
+| Vinod sojit    |
+| Pashva shah    |
+| Amit shah      |
+| Preet          |
+| Raj modi       |
+| Pashva samarth |
+| Smit patel     |
+| Sweta          |
+| Raju sharma    |
+| Vijay          |
+| Brijesh patel  |
+| Vansh          |
++----------------+
+
+============================================================================================================================
+
+61) FIND OUT THE LENGTH OF YOUR NAME USING APPROPRIATE FUNCTION.
+
+select length('Ravi Vaghela');
++------------------------+
+| length('Ravi Vaghela') |
++------------------------+
+|                     12 |
++------------------------+
+
+---------------------------------------------------------------------------------------------
+
+select Employee_Name, length(Employee_Name) from Employee where Employee_Name='Ravi Vaghela';
++---------------+-----------------------+
+| Employee_Name | length(Employee_Name) |
++---------------+-----------------------+
+| Ravi Vaghela  |                    12 |
++---------------+-----------------------+
+
+==========================================================================================================================
+
+62) DISPLAY THE LENGTH OF ALL EMPLOYEES NAMES.
+
+select Employee_Name, length(Employee_Name) from Employee;
++----------------+-----------------------+
+| Employee_Name  | length(Employee_Name) |
++----------------+-----------------------+
+| Jinal Shah     |                    10 |
+| Ravi Vaghela   |                    12 |
+| Aaqib Shaikh   |                    12 |
+| Nidhi Jain     |                    10 |
+| Vinod Sojit    |                    11 |
+| Pashva Shah    |                    11 |
+| Amit Shah      |                     9 |
+| Preet          |                     5 |
+| Raj Modi       |                     8 |
+| Pashva Samarth |                    14 |
+| Smit Patel     |                    10 |
+| Sweta          |                     5 |
+| Raju Sharma    |                    11 |
+| Vijay          |                     5 |
+| Brijesh Patel  |                    13 |
+| Vansh          |                     5 |
++----------------+-----------------------+
+
+===============================================================================================================================
+
+63) DISPLAY THE NAME OF THE EMPLOYEE CONCATENATE WITH EMP NO.
+
+select concat(Employee_ID,Employee_Name) from Employee;
++-----------------------------------+
+| concat(Employee_ID,Employee_Name) |
++-----------------------------------+
+| 1Jinal Shah                       |
+| 2Ravi Vaghela                     |
+| 3Aaqib Shaikh                     |
+| 4Nidhi Jain                       |
+| 5Vinod Sojit                      |
+| 6Pashva Shah                      |
+| 7Amit Shah                        |
+| 8Preet                            |
+| 9Raj Modi                         |
+| 10Pashva Samarth                  |
+| 11Smit Patel                      |
+| 12Sweta                           |
+| 13Raju Sharma                     |
+| 14Vijay                           |
+| 15Brijesh Patel                   |
+| 16Vansh                           |
++-----------------------------------+
+
+====================================================================================================================================
+
+64) USE APPROPRIATE FUNCTION AND EXTRACT 3 CHARACTERS STARTING FROM 2 CHARACTERS FROM 
+    THE FOLLOWING STRING 'ORACLE' I.E. THE OUTPUT SHOULD BE 'RAC'
+
+----------------------------------------------------------------
+
+select substr('Oracle',2,3);
++----------------------+
+| substr('Oracle',2,3) |
++----------------------+
+| rac                  |
++----------------------+
+
+----------------------------------------------------------------
+
+select Employee_Name, substr(Employee_Name,2,3) from Employee;
++----------------+---------------------------+
+| Employee_Name  | substr(Employee_Name,2,3) |
++----------------+---------------------------+
+| Jinal Shah     | ina                       |
+| Ravi Vaghela   | avi                       |
+| Aaqib Shaikh   | aqi                       |
+| Nidhi Jain     | idh                       |
+| Vinod Sojit    | ino                       |
+| Pashva Shah    | ash                       |
+| Amit Shah      | mit                       |
+| Preet          | ree                       |
+| Raj Modi       | aj                        |
+| Pashva Samarth | ash                       |
+| Smit Patel     | mit                       |
+| Sweta          | wet                       |
+| Raju Sharma    | aju                       |
+| Vijay          | ija                       |
+| Brijesh Patel  | rij                       |
+| Vansh          | ans                       |
++----------------+---------------------------+
+
+==============================================================================================================================
+
+65) FIND THE FIRST OCCURRENCE OF CHARACTER A FROM THE FOLLOWING STRING 'COMPUTER MAINTENANCE CORPORATION'
+
+select instr('computer maintenance corporation','a');
++-----------------------------------------------+
+| instr('computer maintenance corporation','a') |
++-----------------------------------------------+
+|                                            11 |
++-----------------------------------------------+
+
+-------------------------------------------------------------
+
+select Employee_Name, instr(Employee_Name,'a') from Employee;
++----------------+--------------------------+
+| Employee_Name  | instr(Employee_Name,'a') |
++----------------+--------------------------+
+| Jinal Shah     |                        4 |
+| Ravi Vaghela   |                        2 |
+| Aaqib Shaikh   |                        1 |
+| Nidhi Jain     |                        8 |
+| Vinod Sojit    |                        0 |
+| Pashva Shah    |                        2 |
+| Amit Shah      |                        1 |
+| Preet          |                        0 |
+| Raj Modi       |                        2 |
+| Pashva Samarth |                        2 |
+| Smit Patel     |                        7 |
+| Sweta          |                        5 |
+| Raju Sharma    |                        2 |
+| Vijay          |                        4 |
+| Brijesh Patel  |                       10 |
+| Vansh          |                        2 |
++----------------+--------------------------+
+
+
+=============================================================================================================================
+
+66) REPLACE EVERY OCCURRENCE OF ALPHABET A WITH B IN THE STRING ALLENS (USER TRLATE FUNCTION)
+
+select replace('Allens','e','a');
++---------------------------+
+| replace('Allens','e','a') |
++---------------------------+
+| Allans                    |
++---------------------------+
+
+==========================================================================================================================
+
+67) DISPLAY THE INFORMATION FROM EMP TABLE. 
+    WHEREVER JOB 'MANAGER' IS FOUND IT SHOULD BE DISPLAYED AS BOSS(REPLACE FUNCTION)
+
+select Employee_ID, Employee_Name, replace(Employee_Job, 'Manager', 'Boss') as Employee_Job from Employee;
++-------------+----------------+--------------------+
+| Employee_ID | Employee_Name  | Employee_Job       |
++-------------+----------------+--------------------+
+|           1 | Jinal Shah     | Full Stack Trainee |
+|           2 | Ravi Vaghela   | Full Stack Trainee |
+|           3 | Aaqib Shaikh   | Full Stack Trainee |
+|           4 | Nidhi Jain     | Full Stack Trainee |
+|           5 | Vinod Sojit    | Salesman           |
+|           6 | Pashva Shah    | Web Developer      |
+|           7 | Amit Shah      | Boss               |
+|           8 | Preet          | Web Designer       |
+|           9 | Raj Modi       | Analyst            |
+|          10 | Pashva Samarth | Salesman           |
+|          11 | Smit Patel     | Clerk              |
+|          12 | Sweta          | Clerk              |
+|          13 | Raju Sharma    | Salesman           |
+|          14 | Vijay          | Boss               |
+|          15 | Brijesh Patel  | Analyst            |
+|          16 | Vansh          | Analyst            |
++-------------+----------------+--------------------+
+
+===========================================================================================================================
+
+68) DISPLAY YOUR Date IN Age
+
+select date_format(from_days(datediff(now(),'1999-11-07')), '%Y')+0 Age;
++------+
+| Age  |
++------+
+|   22 |
++------+
+
+===================================================================================================================
+
+69) DISPLAY CURRENT TIME
+
+select now() as 'Date and Time';
++---------------------+
+| Date and Time       |
++---------------------+
+| 2022-03-27 19:06:25 |
++---------------------+
+
+select current_timestamp as 'Date and Time';
++---------------------+
+| Date and Time       |
++---------------------+
+| 2022-03-27 19:06:57 |
++---------------------+
+
+===================================================================================================================
+
+70)DISPLAY THE COMMON JOBS FROM DEPARTMENT NUMBER 10 AND 10
+
+select Employee_Job from Employee where Department_ID=10 and Employee_Job 
+in(select Employee_Job from Employee where Department_ID=10);
++--------------+
+| Employee_Job |
++--------------+
+| Manager      |
+| Manager      |
++--------------+
+
+============================================================================================================================
+
+71) DISPLAY THE JOBS WHICH ARE UNIQUE TO DEPT NO 10
+
+select Employee_Job from Employee where 
+Department_ID=10 and Employee_Job not in (select Employee_Job from Employee where Department_ID<>10);
++--------------+
+| Employee_Job |
++--------------+
+| Manager      |
+| Manager      |
++--------------+
+
+==================================================================================================================================
+
+72) DISPLAY THE DETAILS OF THOSE WHO DO NOT HAVE ANY PERSON WORKING UNDER THEM.
+
+select Employee_ID from Employee where Employee_ID not in (select Employee_Job from Employee where Employee_Job is not null);
++-------------+
+| Employee_ID |
++-------------+
+|           1 |
+|           2 |
+|           3 |
+|           4 |
+|           5 |
+|           6 |
+|           7 |
+|           8 |
+|           9 |
+|          10 |
+|          11 |
+|          12 |
+|          13 |
+|          14 |
+|          15 |
+|          16 |
++-------------+
+
+===================================================================================================================================
+
+73) DISPLAY THOSE WHO ARE NOT MANAGERS AND WHO ARE MANAGERS ANY ONE
+
+select * from Employee where Employee_ID in(select Employee_Job from Employee) union select * from Employee where Employee_ID not in(select Employee_Job from Employee where Employee_Job is not null);
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah     | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain     | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 150000 |       5000 | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah    | Web Developer      |  35000 |       2000 | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah      | Manager            | 300000 |       7000 | 2015-10-01   |               7 |
+|           8 |            50 | IT Department      | Preet          | Web Designer       | 130000 |       6000 | 2018-01-25   |               6 |
+|           9 |            40 | Analyst Department | Raj Modi       | Analyst            | 150000 |       5000 | 2010-10-15   |               5 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  80000 |       3000 | 2020-10-12   |               3 |
+|          11 |            30 | Finance Department | Smit Patel     | Clerk              |  10000 |       2000 | 2021-03-11   |               2 |
+|          12 |            30 | Finance Department | Sweta          | Clerk              |  15000 |       3000 | 2021-03-11   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  20000 |       4000 | 2020-10-10   |               4 |
+|          14 |            10 | Manager Department | Vijay          | Manager            |  70000 |       7000 | 2018-07-03   |               2 |
+|          15 |            40 | Analyst Department | Brijesh Patel  | Analyst            | 220000 |      10000 | 2019-12-30   |               8 |
+|          16 |            40 | Analyst Department | Vansh          | Analyst            | 270000 |      10000 | 2019-10-30   |              10 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+
+===========================================================================================================================================================
+
+74) DISPLAY THOSE EMPLOYEES WHOSE NAME CONTAINS NOT LESS THAN 10 CHARS
+
+Select * from Employee where length(Employee_Name)>10;
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  20000 |          0 | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 150000 |       5000 | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah    | Web Developer      |  35000 |       2000 | 2020-07-01   |               2 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  80000 |       3000 | 2020-10-12   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  20000 |       4000 | 2020-10-10   |               4 |
+|          15 |            40 | Analyst Department | Brijesh Patel  | Analyst            | 220000 |      10000 | 2019-12-30   |               8 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+--------------+-----------------+
+
+=====================================================================================================================================================
+
+75) DISPLAY THOSE DEPARTMENTS WHOSE NAME START WITH 'S' WHILE LOCATION NAME END WITH 'i'
+
+ select * from Employee where Department_Name like 'S%' and Location like '%i';
++-------------+---------------+------------------+----------------+--------------+--------+------------+----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name  | Employee_Name  | Employee_Job | Salary | Commission | Location | Joining_Date | Experience_Year |
++-------------+---------------+------------------+----------------+--------------+--------+------------+----------+--------------+-----------------+
+|           5 |            20 | Sales Department | Vinod Sojit    | Salesman     | 150000 |       5000 | Delhi    | 2020-10-10   |               5 |
+|          10 |            20 | Sales Department | Pashva Samarth | Salesman     |  80000 |       3000 | Delhi    | 2020-10-12   |               3 |
+|          13 |            20 | Sales Department | Raju Sharma    | Salesman     |  20000 |       4000 | Delhi    | 2020-10-10   |               4 |
++-------------+---------------+------------------+----------------+--------------+--------+------------+----------+--------------+-----------------+
+
+
+===============================================================================================================================================================
+
+76) DISPLAY THOSE EMPLOYEES WHOSE MANAGER NAME IS Vijay
+
+select * from Employee where Employee_Name='Vijay';
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+|          14 |            10 | Manager Department | Vijay         | Manager      |  70000 |       7000 | Ahmedabad | 2018-07-03   |               2 |
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+
+
+==========================================================================================================================================================
+
+77) DISPLAY THOSE EMPLOYEES WHOSE SALARY IS MORE THAN 20000 AFTER GIVING 20% INCREMENT
+
+select * from Employee where Salary + Salary*20/100 > 20000;
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah     | Full Stack Trainee |  20000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  20000 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  20000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain     | Full Stack Trainee |  20000 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 150000 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah    | Web Developer      |  35000 |       2000 | Ahmedabad | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah      | Manager            | 300000 |       7000 | Ahmedabad | 2015-10-01   |               7 |
+|           8 |            50 | IT Department      | Preet          | Web Designer       | 130000 |       6000 | Ahmedabad | 2018-01-25   |               6 |
+|           9 |            40 | Analyst Department | Raj Modi       | Analyst            | 150000 |       5000 | Ahmedabad | 2010-10-15   |               5 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  80000 |       3000 | Delhi     | 2020-10-12   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  20000 |       4000 | Delhi     | 2020-10-10   |               4 |
+|          14 |            10 | Manager Department | Vijay          | Manager            |  70000 |       7000 | Ahmedabad | 2018-07-03   |               2 |
+|          15 |            40 | Analyst Department | Brijesh Patel  | Analyst            | 220000 |      10000 | Ahmedabad | 2019-12-30   |               8 |
+|          16 |            40 | Analyst Department | Vansh          | Analyst            | 270000 |      10000 | Ahmedabad | 2019-10-30   |              10 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+==============================================================================================================================================================
+
+78) DISPLAY ENAME WHO ARE WORKING IN SALES DEPT.
+
+select Employee_ID, Employee_Name from Employee where Department_Name='Sales Department';
++-------------+----------------+
+| Employee_ID | Employee_Name  |
++-------------+----------------+
+|           5 | Vinod Sojit    |
+|          10 | Pashva Samarth |
+|          13 | Raju Sharma    |
++-------------+----------------+
+
+=====================================================================================================================
+
+79) DISPLAY EMPLOYEE NAME, DEPTNAME, SALARY AND COMM. FOR THOSE SAL IN BETWEEN 15000 TO 50000 WHILE LOCATION IS Ahmedabad.
+
+select Employee_ID, Employee_Name, Department_ID from Employee where location='Ahmedabad' and Salary between 20000 and 50000;
++-------------+---------------+---------------+
+| Employee_ID | Employee_Name | Department_ID |
++-------------+---------------+---------------+
+|           1 | Jinal Shah    |            50 |
+|           3 | Aaqib Shaikh  |            50 |
+|           6 | Pashva Shah   |            50 |
++-------------+---------------+---------------+
+
+=========================================================================================================================================================
+
+80) UPDATE THE SALARY OF EACH EMPLOYEE BY 10% INCREMENTS THAT ARE NOT ELIGIBLE FOR COMMISSION
+
+update Employee set Salary = Salary+(Salary*10/100) where Commission=0;
+
+select * from Employee where Commission=0;
++-------------+---------------+-----------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name | Employee_Name | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+-----------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department   | Jinal Shah    | Full Stack Trainee |  22000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department   | Ravi Vaghela  | Full Stack Trainee |  22000 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department   | Aaqib Shaikh  | Full Stack Trainee |  22000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department   | Nidhi Jain    | Full Stack Trainee |  22000 |          0 | Dehgam    | 2022-02-02   |               0 |
++-------------+---------------+-----------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+=========================================================================================================================================================
+
+81) DISPLAY EMPLOYEE NAME, JOB, DEPTNAME, LOCATION FOR ALL WHO ARE WORKING AS MANAGERS.
+
+select Employee_ID, Employee_Job, Department_Name, Location from Employee where Employee_Job!='Manager';
++-------------+--------------------+--------------------+-----------+
+| Employee_ID | Employee_Job       | Department_Name    | Location  |
++-------------+--------------------+--------------------+-----------+
+|           1 | Full Stack Trainee | IT Department      | Ahmedabad |
+|           2 | Full Stack Trainee | IT Department      | Patan     |
+|           3 | Full Stack Trainee | IT Department      | Ahmedabad |
+|           4 | Full Stack Trainee | IT Department      | Dehgam    |
+|           5 | Salesman           | Sales Department   | Delhi     |
+|           6 | Web Developer      | IT Department      | Ahmedabad |
+|           8 | Web Designer       | IT Department      | Ahmedabad |
+|           9 | Analyst            | Analyst Department | Ahmedabad |
+|          10 | Salesman           | Sales Department   | Delhi     |
+|          11 | Clerk              | Finance Department | Pune      |
+|          12 | Clerk              | Finance Department | Pune      |
+|          13 | Salesman           | Sales Department   | Delhi     |
+|          15 | Analyst            | Analyst Department | Ahmedabad |
+|          16 | Analyst            | Analyst Department | Ahmedabad |
++-------------+--------------------+--------------------+-----------+
+
+========================================================================================================================================================
+
+82) FIND OUT THE TOP 5 EARNER OF COMPANY.
+
+select * from Employee e where 5 > (select count(*) from Employee where Salary > e.Salary) order by Salary desc;
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+|           7 |            10 | Manager Department | Amit Shah     | Manager      | 300000 |       7000 | Ahmedabad | 2015-10-01   |               7 |
+|          16 |            40 | Analyst Department | Vansh         | Analyst      | 270000 |      10000 | Ahmedabad | 2019-10-30   |              10 |
+|          15 |            40 | Analyst Department | Brijesh Patel | Analyst      | 220000 |      10000 | Ahmedabad | 2019-12-30   |               8 |
+|           5 |            20 | Sales Department   | Vinod Sojit   | Salesman     | 150000 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           9 |            40 | Analyst Department | Raj Modi      | Analyst      | 150000 |       5000 | Ahmedabad | 2010-10-15   |               5 |
++-------------+---------------+--------------------+---------------+--------------+--------+------------+-----------+--------------+-----------------+
+
+========================================================================================================================================================
+
+83) DISPLAY THE NAME OF THOSE EMPLOYEES WHO ARE GETTING HIGHEST SALARY.
+
+select Employee_ID, Employee_Name, Salary from Employee where Salary = (select max(Salary) from Employee);
++-------------+---------------+--------+
+| Employee_ID | Employee_Name | Salary |
++-------------+---------------+--------+
+|           7 | Amit Shah     | 300000 |
++-------------+---------------+--------+
+
+==========================================================================================================================================================
+
+84) DISPLAY COUNT OF EMPLOYEES IN EACH DEPARTMENT WHERE COUNT GREATER THAN 3.
+
+select Department_ID, count(*) from Employee group by Department_ID having count(*) > 3;
++---------------+----------+
+| Department_ID | count(*) |
++---------------+----------+
+|            50 |        6 |
++---------------+----------+
+
+==========================================================================================================
+
+85) DISPLAY DNAME WHERE AT LEAST 3 ARE WORKING AND DISPLAY ONLY DNAME
+
+select Department_Name from Employee where Department_ID in 
+(select Department_ID from Employee group by Department_ID having count(*) > 3);
++-----------------+
+| Department_Name |
++-----------------+
+| IT Department   |
+| IT Department   |
+| IT Department   |
+| IT Department   |
+| IT Department   |
+| IT Department   |
++-----------------+
+
+===============================================================================================================
+
+86) DISPLAY EMPLOYEE NAME, SAL, COMM AND NET PAY FOR THOSE EMPLOYEES 
+    WHOSE NET PAY ARE GREATER THAN OR EQUAL TO ANY OTHER EMPLOYEE SALARY OF THE COMPANY?
+
+select Employee_Name, Salary, Commission, Salary + nvl(Commission,0) Net_Pay from 
+Employee where Salary + nvl(Commission,0) >= any(select Salary from Employee);
++----------------+--------+------------+---------+
+| Employee_Name  | Salary | Commission | Net_Pay |
++----------------+--------+------------+---------+
+| Jinal Shah     |  22000 |          0 |   22000 |
+| Ravi Vaghela   |  22000 |          0 |   22000 |
+| Aaqib Shaikh   |  22000 |          0 |   22000 |
+| Nidhi Jain     |  22000 |          0 |   22000 |
+| Vinod Sojit    | 150000 |       5000 |  155000 |
+| Pashva Shah    |  35000 |       2000 |   37000 |
+| Amit Shah      | 300000 |       7000 |  307000 |
+| Preet          | 130000 |       6000 |  136000 |
+| Raj Modi       | 150000 |       5000 |  155000 |
+| Pashva Samarth |  80000 |       3000 |   83000 |
+| Smit Patel     |  10000 |       2000 |   12000 |
+| Sweta          |  15000 |       3000 |   18000 |
+| Raju Sharma    |  20000 |       4000 |   24000 |
+| Vijay          |  70000 |       7000 |   77000 |
+| Brijesh Patel  | 220000 |      10000 |  230000 |
+| Vansh          | 270000 |      10000 |  280000 |
++----------------+--------+------------+---------+
+
+=============================================================================================================================
+
+87) DISPLAY ALL EMPLOYEES NAMES WITH TOTAL SAL OF COMPANY WITH EMPLOYEE NAME
+
+select Employee_Name, (Salary+Commission) Total_Salary from Employee;
++----------------+--------------+
+| Employee_Name  | Total_Salary |
++----------------+--------------+
+| Jinal Shah     |        22000 |
+| Ravi Vaghela   |        22000 |
+| Aaqib Shaikh   |        22000 |
+| Nidhi Jain     |        22000 |
+| Vinod Sojit    |       155000 |
+| Pashva Shah    |        37000 |
+| Amit Shah      |       307000 |
+| Preet          |       136000 |
+| Raj Modi       |       155000 |
+| Pashva Samarth |        83000 |
+| Smit Patel     |        12000 |
+| Sweta          |        18000 |
+| Raju Sharma    |        24000 |
+| Vijay          |        77000 |
+| Brijesh Patel  |       230000 |
+| Vansh          |       280000 |
++----------------+--------------+
+
+============================================================================================================================
+
+88) FIND OUT THE LAST 5(LEAST) EARNER OF THE COMPANY?
+
+select * from Employee e where 5 > (select count(*) from Employee where Salary < e.Salary) order by Salary;
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|          11 |            30 | Finance Department | Smit Patel    | Clerk              |  10000 |       2000 | Pune      | 2021-03-11   |               2 |
+|          12 |            30 | Finance Department | Sweta         | Clerk              |  15000 |       3000 | Pune      | 2021-03-11   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma   | Salesman           |  20000 |       4000 | Delhi     | 2020-10-10   |               4 |
+|           1 |            50 | IT Department      | Jinal Shah    | Full Stack Trainee |  22000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela  | Full Stack Trainee |  22000 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh  | Full Stack Trainee |  22000 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain    | Full Stack Trainee |  22000 |          0 | Dehgam    | 2022-02-02   |               0 |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+=============================================================================================================================================================
+
+89) DISPLAY EMPLOYEE NAME, SAL, COMM. AND WHOSE NET PAY IS GREATER THAN ANY OTHER IN THE COMPANY?
+
+Select Employee_Name, Salary, Commission from 
+Employee where Salary + Salary*15/100 - Salary*5/100 + Salary*10/100 = 
+(select max(Salary + Salary*15/100 - Salary*5/100 + Salary*10/100) from Employee);
++---------------+--------+------------+
+| Employee_Name | Salary | Commission |
++---------------+--------+------------+
+| Amit Shah     | 300000 |       7000 |
++---------------+--------+------------+
+
+===============================================================================================================================================================
+
+90) DISPLAY THOSE EMPLOYEES WHOSE SALARY IS ODD VALUE?
+
+select * from Employee where mod(Salary,2)=1;
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah     | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  17567 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain     | Full Stack Trainee |  17567 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 135315 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           9 |            40 | Analyst Department | Raj Modi       | Analyst            | 135315 |       5000 | Ahmedabad | 2010-10-15   |               5 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  64349 |       3000 | Delhi     | 2020-10-12   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  16087 |       4000 | Delhi     | 2020-10-10   |               4 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+=====================================================================================================================================================================
+
+91) DISPLAY THOSE EMPLOYEES WHOSE SALARY CONTAINS AT LEAST 4 DIGITS?
+
+select * from Employee where length(Salary)>=4;
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name  | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah     | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela   | Full Stack Trainee |  17567 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh   | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain     | Full Stack Trainee |  17567 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit    | Salesman           | 135315 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah    | Web Developer      |  35000 |       2000 | Ahmedabad | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah      | Manager            | 291000 |       7000 | Ahmedabad | 2015-10-01   |               7 |
+|           8 |            50 | IT Department      | Preet          | Web Designer       | 130000 |       6000 | Ahmedabad | 2018-01-25   |               6 |
+|           9 |            40 | Analyst Department | Raj Modi       | Analyst            | 135315 |       5000 | Ahmedabad | 2010-10-15   |               5 |
+|          10 |            20 | Sales Department   | Pashva Samarth | Salesman           |  64349 |       3000 | Delhi     | 2020-10-12   |               3 |
+|          11 |            30 | Finance Department | Smit Patel     | Clerk              |  10000 |       2000 | Pune      | 2021-03-11   |               2 |
+|          12 |            30 | Finance Department | Sweta          | Clerk              |  12066 |       3000 | Pune      | 2021-03-11   |               3 |
+|          13 |            20 | Sales Department   | Raju Sharma    | Salesman           |  16087 |       4000 | Delhi     | 2020-10-10   |               4 |
+|          14 |            10 | Manager Department | Vijay          | Manager            |  67900 |       7000 | Ahmedabad | 2018-07-03   |               2 |
+|          15 |            40 | Analyst Department | Brijesh Patel  | Analyst            | 220000 |      10000 | Ahmedabad | 2019-12-30   |               8 |
+|          16 |            40 | Analyst Department | Vansh          | Analyst            | 270000 |      10000 | Ahmedabad | 2019-10-30   |              10 |
++-------------+---------------+--------------------+----------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+=======================================================================================================================================================================
+
+92) DISPLAY THOSE EMPLOYEES WHOSE NAME CONTAINS 'J' ?
+
+select * from Employee where instr(Employee_Name,'J') > 0;
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah    | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain    | Full Stack Trainee |  17567 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit   | Salesman           | 135315 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           9 |            40 | Analyst Department | Raj Modi      | Analyst            | 135315 |       5000 | Ahmedabad | 2010-10-15   |               5 |
+|          13 |            20 | Sales Department   | Raju Sharma   | Salesman           |  16087 |       4000 | Delhi     | 2020-10-10   |               4 |
+|          14 |            10 | Manager Department | Vijay         | Manager            |  67900 |       7000 | Ahmedabad | 2018-07-03   |               2 |
+|          15 |            40 | Analyst Department | Brijesh Patel | Analyst            | 220000 |      10000 | Ahmedabad | 2019-12-30   |               8 |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+===========================================================================================================================================================================
+
+93) DISPLAY THOSE EMPLOYEES WHOSE DEPTNO IS AVAILABLE IN SALARY?
+
+select * from Employee where instr(Salary, Department_ID)>0;
++-------------+---------------+--------------------+---------------+---------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job  | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+---------------+--------+------------+-----------+--------------+-----------------+
+|           6 |            50 | IT Department      | Pashva Shah   | Web Developer |  35000 |       2000 | Ahmedabad | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah     | Manager       | 291000 |       7000 | Ahmedabad | 2015-10-01   |               7 |
++-------------+---------------+--------------------+---------------+---------------+--------+------------+-----------+--------------+-----------------+
+
+================================================================================================================================================================
+
+94) DISPLAY THOSE EMPLOYEES WHO ARE WORKING AS MANAGER?
+
+select Employee_Name from Employee where Employee_Job='Manager';
++---------------+
+| Employee_Name |
++---------------+
+| Amit Shah     |
+| Vijay         |
++---------------+
+
+===============================================================================
+
+95) COUNT THE NO OF EMPLOYEES WHO ARE WORKING AS MANAGER (USE SET OPERATION)?
+
+select count(*) from Employee where Employee_Job='Manager';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+
+==============================================================================================
+
+96) DISPLAY THE NAME OF THEN DEPT THOSE EMPLOYEES WHO JOINED THE COMPANY ON THE SAME DATE?
+
+elect Employee_ID, Employee_Name, Joining_Date, Department_ID from 
+Employee e where Joining_Date in (select Joining_Date from Employee where Employee_ID <> e.Employee_ID);
++-------------+---------------+--------------+---------------+
+| Employee_ID | Employee_Name | Joining_Date | Department_ID |
++-------------+---------------+--------------+---------------+
+|           2 | Ravi Vaghela  | 2022-02-02   |            50 |
+|           3 | Aaqib Shaikh  | 2022-02-02   |            50 |
+|           4 | Nidhi Jain    | 2022-02-02   |            50 |
+|           1 | Jinal Shah    | 2022-02-02   |            50 |
+|          13 | Raju Sharma   | 2020-10-10   |            20 |
+|          12 | Sweta         | 2021-03-11   |            30 |
+|          11 | Smit Patel    | 2021-03-11   |            30 |
+|           5 | Vinod Sojit   | 2020-10-10   |            20 |
++-------------+---------------+--------------+---------------+
+
+==================================================================================================================
+
+97) FIND OUT THE AVG SAL AND AVG TOTAL REMUNERATION FOR EACH JOB TYPE REMEMBER SALESMAN EARN COMMISSION.
+
+select Employee_Job, avg(Salary + nvl(Commission,0)) as 'Average Salary', 
+sum(Salary + nvl(Commission,0)) as 'Total Salary' from Employee group by Employee_Job;
++--------------------+----------------+--------------+
+| Employee_Job       | Average Salary | Total Salary |
++--------------------+----------------+--------------+
+| Analyst            |    216771.6667 |       650315 |
+| Clerk              |     13533.0000 |        27066 |
+| Full Stack Trainee |     17567.0000 |        70268 |
+| Manager            |    186450.0000 |       372900 |
+| Salesman           |     75917.0000 |       227751 |
+| Web Designer       |    136000.0000 |       136000 |
+| Web Developer      |     37000.0000 |        37000 |
++--------------------+----------------+--------------+
+
+=======================================================================================================
+
+98) CHECK WHETHER ALL EMPLOYEES NUMBER ARE INDEED UNIQUE
+
+select count(Employee_ID) as 'Employee Number', 
+count(distinct(Employee_ID)) as 'Unique Employee Number' 
+from Employee having count(Employee_ID) = (count(distinct(Employee_ID)));
++-----------------+------------------------+
+| Employee Number | Unique Employee Number |
++-----------------+------------------------+
+|              16 |                     16 |
++-----------------+------------------------+
+
+===================================================================================================================================================================
+
+99) FIND OUT THE EMPLOYEES WHO EARNED THE HIGHEST SAL IN EACH JOB TYPED SORT IN DESCENDING SAL ORDER.
+
+select * from Employee e where Salary = (select max(Salary) from Employee where Employee_Job = e.Employee_Job);
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|           1 |            50 | IT Department      | Jinal Shah    | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela  | Full Stack Trainee |  17567 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh  | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain    | Full Stack Trainee |  17567 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           5 |            20 | Sales Department   | Vinod Sojit   | Salesman           | 135315 |       5000 | Delhi     | 2020-10-10   |               5 |
+|           6 |            50 | IT Department      | Pashva Shah   | Web Developer      |  35000 |       2000 | Ahmedabad | 2020-07-01   |               2 |
+|           7 |            10 | Manager Department | Amit Shah     | Manager            | 291000 |       7000 | Ahmedabad | 2015-10-01   |               7 |
+|           8 |            50 | IT Department      | Preet         | Web Designer       | 130000 |       6000 | Ahmedabad | 2018-01-25   |               6 |
+|          12 |            30 | Finance Department | Sweta         | Clerk              |  12066 |       3000 | Pune      | 2021-03-11   |               3 |
+|          16 |            40 | Analyst Department | Vansh         | Analyst            | 270000 |      10000 | Ahmedabad | 2019-10-30   |              10 |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+======================================================================================================================================================================
+
+100) FIND OUT THE EMPLOYEES WHO EARNED THE MIN SAL FOR THEIR JOB IN ASCENDING ORDER.
+
+select * from Employee e where Salary = (select min(Salary) from Employee where Employee_Job = e.Employee_Job) order by Salary;
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+| Employee_ID | Department_ID | Department_Name    | Employee_Name | Employee_Job       | Salary | Commission | Location  | Joining_Date | Experience_Year |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+|          11 |            30 | Finance Department | Smit Patel    | Clerk              |  10000 |       2000 | Pune      | 2021-03-11   |               2 |
+|          13 |            20 | Sales Department   | Raju Sharma   | Salesman           |  16087 |       4000 | Delhi     | 2020-10-10   |               4 |
+|           1 |            50 | IT Department      | Jinal Shah    | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           2 |            50 | IT Department      | Ravi Vaghela  | Full Stack Trainee |  17567 |          0 | Patan     | 2022-02-02   |               0 |
+|           3 |            50 | IT Department      | Aaqib Shaikh  | Full Stack Trainee |  17567 |          0 | Ahmedabad | 2022-02-02   |               0 |
+|           4 |            50 | IT Department      | Nidhi Jain    | Full Stack Trainee |  17567 |          0 | Dehgam    | 2022-02-02   |               0 |
+|           6 |            50 | IT Department      | Pashva Shah   | Web Developer      |  35000 |       2000 | Ahmedabad | 2020-07-01   |               2 |
+|          14 |            10 | Manager Department | Vijay         | Manager            |  67900 |       7000 | Ahmedabad | 2018-07-03   |               2 |
+|           8 |            50 | IT Department      | Preet         | Web Designer       | 130000 |       6000 | Ahmedabad | 2018-01-25   |               6 |
+|           9 |            40 | Analyst Department | Raj Modi      | Analyst            | 135315 |       5000 | Ahmedabad | 2010-10-15   |               5 |
++-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
