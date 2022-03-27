@@ -1003,7 +1003,7 @@ select Employee_Name from Employee where Salary=(select max(Salary) from Employe
     AND EARNING HIGHEST SALARY AMONG CLERKS
 
 
-select Employee_ID, 
+select Employee_ID,
 Employee_Name from Employee where Employee_Job='Clerk' and Salary=(select max(Salary) 
 from Employee where Employee_Job='Clerk');
 +-------------+---------------+
