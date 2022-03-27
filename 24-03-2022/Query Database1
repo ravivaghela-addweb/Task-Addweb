@@ -999,10 +999,13 @@ select Employee_Name from Employee where Salary=(select max(Salary) from Employe
 
 =========================================================================================================================
 
-50) DISPLAY THE EMPLOYEE NUMBER AND NAME OF EMPLOYEE WORKING AS CLERK AND EARNING HIGHEST SALARY AMONG CLERKS
+50) DISPLAY THE EMPLOYEE NUMBER AND NAME OF EMPLOYEE WORKING AS CLERK 
+    AND EARNING HIGHEST SALARY AMONG CLERKS
 
 
-select Employee_ID, Employee_Name from Employee where Employee_Job='Clerk' and Salary=(select max(Salary) from Employee where Employee_Job='Clerk');
+select Employee_ID, 
+Employee_Name from Employee where Employee_Job='Clerk' and Salary=(select max(Salary) 
+from Employee where Employee_Job='Clerk');
 +-------------+---------------+
 | Employee_ID | Employee_Name |
 +-------------+---------------+
