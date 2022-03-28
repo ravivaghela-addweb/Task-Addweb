@@ -43,7 +43,8 @@ select Employee_Name from Employee where Employee_Job='Salesman' and Salary >
 52) DISPLAY THE NAMES OF THE EMPLOYEES WHO EARN HIGHEST SALARY IN THEIR RESPECTIVE DEPARTMENTS.
 
 
-select Employee_Name from Employee as e where Salary = (select max(Salary) from Employee where Department_ID=e.Department_ID);
+select Employee_Name from Employee as e where Salary = 
+(select max(Salary) from Employee where Department_ID=e.Department_ID);
 +---------------+
 | Employee_Name |
 +---------------+
