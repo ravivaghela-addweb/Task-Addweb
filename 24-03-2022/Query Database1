@@ -67,6 +67,7 @@ desc Employee_Department;
 
 -------------------------------------------------------------------------------------------------
 Modify Column Null To Not Null in Employee_Department 
+
 Alter Table Employee_Department modify Commission bigint(10) NOT NULL;
 
 desc Employee_Department;
