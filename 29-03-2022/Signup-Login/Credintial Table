@@ -1,0 +1,12 @@
+create table login (id bigint(10) NOT NULL Primary Key auto_increment, 
+name varchar(50) NOT NULL, username varchar(10) NOT NULL Unique, password varchar(50) NOT NULL);
+
+desc login;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | bigint(10)  | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(50) | NO   |     | NULL    |                |
+| username | varchar(10) | NO   | UNI | NULL    |                |
+| password | varchar(50) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+

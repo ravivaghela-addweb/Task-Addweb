@@ -1,0 +1,103 @@
+---------------------------------------------------------------------
+1) Create customers Table 
+---------------------------------------------------------------------
+
+create table customers 
+(customer_id bigint(10), 
+customer_name varchar(30), 
+age int(3), 
+address varchar(50), 
+salary bigint(10));
+
+desc customers;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | bigint(10)  | YES  |     | NULL    |       |
+| customer_name | varchar(30) | YES  |     | NULL    |       |
+| age           | int(3)      | YES  |     | NULL    |       |
+| address       | varchar(50) | YES  |     | NULL    |       |
+| salary        | bigint(10)  | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+----------------------------------------------------------------------
+2) Create orders Table 
+----------------------------------------------------------------------
+
+create table orders 
+(order_id bigint(10), 
+order_date date, 
+customer_id bigint(10), 
+order_amount float(10,2));
+
+desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| order_id     | bigint(10)  | YES  |     | NULL    |       |
+| order_date   | date        | YES  |     | NULL    |       |
+| customer_id  | bigint(10)  | YES  |     | NULL    |       |
+| order_amount | float(10,2) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+================================================================================
+
+3) Alter Columns of customers Table
+---------------------------------------------------------------------------
+Alter Table customers Modify customer_id bigint(10) NOT NULL Primary Key; 
+Alter Table customers Modify customer_name varchar(30) NOT NULL;
+Alter Table customers Modify age int(3) NOT NULL;
+Alter Table customers Modify address varchar(50) NOT NULL;
+Alter Table customers Modify salary bigint(10,2) NOT NULL;
+
+ desc customers;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | bigint(10)  | NO   | PRI | NULL    |       |
+| customer_name | varchar(30) | NO   |     | NULL    |       |
+| age           | int(3)      | NO   |     | NULL    |       |
+| address       | varchar(50) | NO   |     | NULL    |       |
+| salary        | float(10,2) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+----------------------------------------------------------------------------
+4) Alter Columns of orders Table
+----------------------------------------------------------------------------
+Alter Table orders Modify order_id bigint(10) NOT NULL Primary Key;
+Alter Table orders Modify order_date date NOT NULL; 
+Alter Table orders Modify customer_id bigint(10) NOT NULL; 
+Alter Table orders Modify order_amount float(10,2) NOT NULL; 
+
+desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| order_id     | bigint(10)  | NO   | PRI | NULL    |       |
+| order_date   | date        | NO   |     | NULL    |       |
+| customer_id  | bigint(10)  | NO   |     | NULL    |       |
+| order_amount | float(10,2) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+===============================================================================
+
+5) Insert Data in customers Table
+--------------------------------------------------------------------------------
+
+INSERT INTO customers(customer_name,customer_age,customer_address,customer_salary)
+VALUES 
+('aaqib',22,'Ahmedabad',20000),
+('alex',24,'Mumbai',25000),
+('jonas',30,'Jaipur',35000),
+('smith',28,'Delhi',28000),
+('vijay',35,'Chennai',50000),
+('virat',21,'Pune',18000);
+
+INSERT INTO `orders`(order_id,order_date,customer_id,order_amount)
+VALUES
+(101,'2022-03-24',1,5000),
+(102,'2022-03-23',3,3000),
+(103,'2022-03-22',2,4000),
+(104,'2022-03-21',5,1000),
+(105,'2022-03-20',4,500);
+

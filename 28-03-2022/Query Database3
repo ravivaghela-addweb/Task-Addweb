@@ -355,7 +355,7 @@ Select Employee_Name, Salary, Salary*15/100 PF from Employee;
 17) CREATE TABLE EMP WITH ONLY ONE COLUMN EMPNO
 
 Create table emp (emp_no bigint(5));
-Query OK, 0 rows affected (0.011 sec)
+
 
 desc emp;
 +--------+-----------+------+-----+---------+-------+
@@ -369,8 +369,7 @@ desc emp;
 18) ADD THIS COLUMN TO EMP TABLE ENAME VARCHAR(20)
 
 alter table emp add column emp_name varchar(20) not null;
-Query OK, 0 rows affected (0.038 sec)
-Records: 0  Duplicates: 0  Warnings: 0
+
 
 desc emp;
 +----------+-------------+------+-----+---------+-------+
@@ -385,8 +384,6 @@ desc emp;
 19) OOPS! I FORGOT TO GIVE THE PRIMARY KEY CONSTRAINT. ADD IT NOW.
 
 alter table emp modify emp_no bigint(5) primary key;
-Query OK, 0 rows affected (0.025 sec)
-Records: 0  Duplicates: 0  Warnings: 0
 
 desc emp;
 +----------+-------------+------+-----+---------+-------+
@@ -401,8 +398,6 @@ desc emp;
 20) OW INCREASE THE LENGTH OF ENAME COLUMN TO 30 CHARACTERS.
 
 alter table emp modify emp_name varchar(30);
-Query OK, 0 rows affected (0.016 sec)
-Records: 0  Duplicates: 0  Warnings: 0
 
 desc emp;
 +----------+-------------+------+-----+---------+-------+
@@ -417,8 +412,6 @@ desc emp;
 21) ADD SALARY COLUMN TO EMP TABLE.
 
 alter table emp add column salary bigint(10) not null;
-Query OK, 0 rows affected (0.038 sec)
-Records: 0  Duplicates: 0  Warnings: 0
 
 desc emp;
 +----------+-------------+------+-----+---------+-------+
@@ -465,8 +458,6 @@ Alter table emp enable constraint emp_salary_check;
 25) ADD COLUMN CALLED AS MGR TO YOUR EMP TABLE
 
 Alter table emp add column deptno bigint(3);
-Query OK, 0 rows affected (0.015 sec)
-Records: 0  Duplicates: 0  Warnings: 0
 
 desc emp;
 +----------+-------------+------+-----+---------+-------+

@@ -1,0 +1,14 @@
+create table student 
+(id bigint(5) NOT NULL Primary Key, name varchar(50) NOT NULL, address varchar(50) NOT NULL, 
+mobile bigint(10) NOT NULL Unique); 
+
+desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | bigint(5)   | NO   | PRI | NULL    |       |
+| name    | varchar(50) | NO   |     | NULL    |       |
+| address | varchar(50) | NO   |     | NULL    |       |
+| mobile  | bigint(10)  | NO   | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
