@@ -1,11 +1,29 @@
+<?php
+    error_reporting(0);
+    $con=mysqli_connect("localhost","root","","QueryDatabase") or die("Error in Connection");
+    $query=mysqli_query($con,"select * from student") or die("Error in query");
+    echo "<table border=2><tr><td>ID</td><td>Name</td><td>Address</td><td>Mobile</td></tr>";
+    while($row=mysqli_fetch_array($query))
+    {
+        echo "<tr>";
+        echo "<td>".$row["id"]."</td>";
+        echo "<td>".$row["name"]."</td>";
+        echo "<td>".$row["address"]."</td>";
+        echo "<td>".$row["mobile"]."</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    mysqli_close($con);
+    echo "<br/>";
+?>
 <html>
 <head>
-    <title>Update data</title>
+    <title>Update Data</title>
 </head>
 <body>
     <form method="post">
         <label for="id">Id : </label>    
-        <input type="number" name="id" id="id" value="<?php echo $sid ?>" /><br/><br/>
+        <input type="number" name="id" id="id" />
         <input type="submit" name="find" value="Find Data" />
     </form>
 </body>
@@ -48,17 +66,21 @@ if(isset($_POST['find']))
 
 if (isset($_POST['Update'])) 
 {
-    $spid=$_POST['id'];
+    $sid=$_POST['id'];
     $sname = $_POST['name'];
     $saddress = $_POST['address'];
     $smobile = $_POST['mobile'];
     $con = mysqli_connect("localhost", "root", "", "QueryDatabase") or die("Error in Connection");
     $query = mysqli_query($con, "update student set name='$sname',address='$saddress', mobile=$smobile where id=$sid") or die("Error in Query");
-    if ($query) {
-        echo "<script>alert('Data Updated');</script>";
-        header('Location:SelectDB.php');
-    } else {
-        echo "<script>alert('Error in Updating');</script>";
+    print_r("update student set name='$sname',address='$saddress', mobile=$smobile where id=$sid");
+    if ($query) 
+    {
+        echo "Data Updated";
+        header('Location:UpdateDB.php');
+    } 
+    else 
+    {
+        echo "Error in Updating";
     }
 
     mysqli_close($con);

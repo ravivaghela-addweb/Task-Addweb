@@ -86,18 +86,296 @@ desc orders;
 
 INSERT INTO customers(customer_name,customer_age,customer_address,customer_salary)
 VALUES 
-('aaqib',22,'Ahmedabad',20000),
-('alex',24,'Mumbai',25000),
-('jonas',30,'Jaipur',35000),
-('smith',28,'Delhi',28000),
-('vijay',35,'Chennai',50000),
-('virat',21,'Pune',18000);
+('Ravi',22,'Ahmedabad',20000),
+('Rita',24,'Mumbai',25000),
+('Smit',30,'Delhi',35000),
+('Sweta',28,'Benglore',28000),
+('Dipak',35,'Pune',50000),
+('Rahul',21,'Chennai',18000);
 
-INSERT INTO `orders`(order_id,order_date,customer_id,order_amount)
+-----------------------------------------------------------------------------------
+6) Insert Data in orders Table
+-----------------------------------------------------------------------------------
+
+INSERT INTO orders(order_id,order_date,customer_id,order_amount)
 VALUES
 (101,'2022-03-24',1,5000),
-(102,'2022-03-23',3,3000),
-(103,'2022-03-22',2,4000),
-(104,'2022-03-21',5,1000),
-(105,'2022-03-20',4,500);
+(102,'2022-03-25',3,3000),
+(103,'2022-03-26',2,4000),
+(104,'2022-03-27',5,1000),
+(105,'2022-03-28',4,500);
+
+==================================================================================
+
+7) Update Data in customers Table
+---------------------------------------------------------------------------------
+
+update table customers set customer_name='Rakesh' where customer_name='Rita';
+
+select * from customers;
++-------------+---------------+-----+-----------+--------+
+| customer_id | customer_name | age | address   | salary |
++-------------+---------------+-----+-----------+--------+
+|           1 | Ravi          |  22 | Ahmedabad |  20000 |
+|           2 | Rakesh        |  24 | Mumbai    |  25000 |
+|           3 | Smit          |  30 | Delhi     |  35000 |
+|           4 | Sweta         |  28 | Benglore  |  28000 |
+|           5 | Dipak         |  35 | Pune      |  50000 |
+|           6 | Rahul         |  21 | Chennai   |  18000 |
++-------------+---------------+-----+-----------+--------+
+
+--------------------------------------------------------------------------------
+
+8) Update Data in orders Table
+--------------------------------------------------------------------------------
+
+update orders set order_id='2000' where order_id=1000;
+
+select * from orders;
++----------+------------+-------------+--------------+
+| order_id | order_date | customer_id | order_amount |
++----------+------------+-------------+--------------+
+|      101 | 2022-03-24 |           1 |      5000.00 |
+|      102 | 2022-03-25 |           3 |      3000.00 |
+|      103 | 2022-03-26 |           2 |      4000.00 |
+|      104 | 2022-03-27 |           5 |      1000.00 |
+|      105 | 2022-03-28 |           4 |       500.00 |
++----------+------------+-------------+--------------+
+
+==================================================================================
+
+9) Display customer_name who salary > 20000
+---------------------------------------------------------------------------------- 
+
+select customer_name from customers where salary > 20000;
++---------------+
+| customer_name |
++---------------+
+| Rakesh        |
+| Smit          |
+| Sweta         |
+| Dipak         |
++---------------+
+
+----------------------------------------------------------------------------------
+
+10) Display customer_id where order_amount >3000
+
+select customer_id from orders where order_amount>3000;
++-------------+
+| customer_id |
++-------------+
+|           1 |
+|           2 |
++-------------+
+
+==================================================================================
+
+11) Display Total customer_name who salary > 20000
+---------------------------------------------------------------------------------
+
+select count(customer_name) from customers where salary > 20000;
++----------------------+
+| count(customer_name) |
++----------------------+
+|                    4 |
++----------------------+
+
+---------------------------------------------------------------------------------
+
+12) Display Total customer_id where order_amount >3000
+
+select count(customer_id) from orders where order_amount>3000;
++--------------------+
+| count(customer_id) |
++--------------------+
+|                  2 |
++--------------------+
+
+================================================================================
+
+13) Display Total salary of customers
+
+select sum(salary) from customers;
++-------------+
+| sum(salary) |
++-------------+
+|      176000 |
++-------------+
+
+------------------------------------------------------------------------------
+
+14) Display Total order_amount of orders
+-------------------------------------------------------------------------------
+
+select sum(order_amount) from orders;
++-------------------+
+| sum(order_amount) |
++-------------------+
+|          13500.00 |
++-------------------+
+
+=============================================================================================
+
+15) Display customer_name and total salary Having Total salary Greater Then 30000
+
+select customer_name,salary from customers group by 
+    -> customer_name having sum(salary) > 30000;
++---------------+--------+
+| customer_name | salary |
++---------------+--------+
+| Dipak         |  50000 |
+| Smit          |  35000 |
++---------------+--------+
+
+----------------------------------------------------------------------------------------
+
+16) Display order_date and total order_amount Having Total order_amount Greater Then 2000
+
+select order_date,order_amount from orders group by order_id having sum(order_amount) > 2000;
++------------+--------------+
+| order_date | order_amount |
++------------+--------------+
+| 2022-03-24 |      5000.00 |
+| 2022-03-25 |      3000.00 |
+| 2022-03-26 |      4000.00 |
++------------+--------------+
+
+================================================================================================
+
+17) Display customer_name in caplital
+ 
+select ucase(customer_name) from customers;
+select upper(customer_name) from customers;
++----------------------+
+| ucase(customer_name) |
++----------------------+
+| RAVI                 |
+| RAKESH               |
+| SMIT                 |
+| SWETA                |
+| DIPAK                |
+| RAHUL                |
++----------------------+
+
+--------------------------------------------------------------
+
+18) Display total orders
+
+select count(order_id) as 'Total Orders' from orders; 
++--------------+
+| Total Orders |
++--------------+
+|            5 |
++--------------+
+
+==============================================================
+
+19) Display customer_name in small char
+
+select lcase(customer_name) from customers;
+select lower(customer_name) from customers;
++----------------------+
+| lcase(customer_name) |
++----------------------+
+| ravi                 |
+| rakesh               |
+| smit                 |
+| sweta                |
+| dipak                |
+| rahul                |
++----------------------+
+
+-------------------------------------------------------------
+
+20) Display Total customers in orders
+
+select count(customer_id) as 'Total Customers' from orders;
++-----------------+
+| Total Customers |
++-----------------+
+|               5 |
++-----------------+
+
+=======================================================================
+
+21) DISPLAY THE NAME OF customers_name IN PROPER CASE.
+
+Select CONCAT(UPPER(SUBSTRING(customer_name,1,1)), 
+LOWER(SUBSTRING(customer_name,2))) AS 'Proper Case Name' from customers;
++------------------+
+| Proper Case Name |
++------------------+
+| Ravi             |
+| Rakesh           |
+| Smit             |
+| Sweta            |
+| Dipak            |
+| Rahul            |
++------------------+
+
+=============================================================================
+
+22) FIND OUT THE LENGTH OF ALL customers_name USING APPROPRIATE FUNCTION
+
+select customer_name, length(customer_name) 
+as 'Length of Customer Name' from customers;
++---------------+-------------------------+
+| customer_name | Length of Customer Name |
++---------------+-------------------------+
+| Ravi          |                       4 |
+| Rakesh        |                       6 |
+| Smit          |                       4 |
+| Sweta         |                       5 |
+| Dipak         |                       5 |
+| Rahul         |                       5 |
++---------------+-------------------------+
+
+===========================================================================
+
+23) DISPLAY THE NAME OF THE customer_name CONCATENATE WITH customers_id
+
+select concat(customer_id,customer_name) from customers;
++-----------------------------------+
+| concat(customer_id,customer_name) |
++-----------------------------------+
+| 1Ravi                             |
+| 2Rakesh                           |
+| 3Smit                             |
+| 4Sweta                            |
+| 5Dipak                            |
+| 6Rahul                            |
++-----------------------------------+
+
+=======================================================================================
+
+24) USE APPROPRIATE FUNCTION AND EXTRACT 3 CHARACTERS STARTING FROM 2 CHARACTERS FROM customers
+
+select customer_name, substr(customer_name,2,2) as Substring from customers;
++---------------+-----------+
+| customer_name | Substring |
++---------------+-----------+
+| Ravi          | av        |
+| Rakesh        | ak        |
+| Smit          | mi        |
+| Sweta         | we        |
+| Dipak         | ip        |
+| Rahul         | ah        |
++---------------+-----------+
+
+========================================================================================
+
+25) FIND THE FIRST OCCURRENCE OF CHARACTER A FROM customers
+
+select customer_name, instr(customer_name,'a') from customers;
++---------------+--------------------------+
+| customer_name | instr(customer_name,'a') |
++---------------+--------------------------+
+| Ravi          |                        2 |
+| Rakesh        |                        2 |
+| Smit          |                        0 |
+| Sweta         |                        5 |
+| Dipak         |                        4 |
+| Rahul         |                        2 |
++---------------+--------------------------+
 
