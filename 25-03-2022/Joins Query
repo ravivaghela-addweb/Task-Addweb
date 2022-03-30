@@ -1,0 +1,234 @@
+create database JoinsDB;
+------------------------------------------------------------------
+Create employee Table 
+-----------------------------------------------------------------
+create table employee
+(emp_id bigint(5) Primary Key, 
+emp_name varchar(30), 
+emp_address varchar(50), 
+emp_mobile bigint(10) unique);
+
+desc employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| emp_id      | bigint(5)   | NO   | PRI | NULL    |       |
+| emp_name    | varchar(30) | YES  |     | NULL    |       |
+| emp_address | varchar(50) | YES  |     | NULL    |       |
+| emp_mobile  | bigint(10)  | YES  | UNI | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+insert into employee
+(emp_id, emp_name, emp_address, emp_mobile) values 
+(1, 'Ravi', 'Patan', 9874563210), 
+(2, 'Aaqib', 'Ahmedabad', 8745632109), 
+(3, 'Nidhi', 'Dehgam', 7456321098), 
+(4, 'Jinal', 'Ahmedabad', 6541230987), 
+(5, 'Ghanshyam', 'Baluntri', 6789012345), 
+(6, 'Kenvy', 'Unjha', 9638527410); 
+
+select * from employee;
++--------+-----------+-------------+------------+
+| emp_id | emp_name  | emp_address | emp_mobile |
++--------+-----------+-------------+------------+
+|      1 | Ravi      | Patan       | 9874563210 |
+|      2 | Aaqib     | Ahmedabad   | 8745632109 |
+|      3 | Nidhi     | Dehgam      | 7456321098 |
+|      4 | Jinal     | Ahmedabad   | 6541230987 |
+|      5 | Ghanshyam | Baluntri    | 6789012345 |
+|      6 | Kenvy     | Unjha       | 9638527410 |
++--------+-----------+-------------+------------+
+
+-----------------------------------------------------------------------------------
+Create official Table
+-----------------------------------------------------------------------------------
+
+create table official
+(official_id bigint(5) Primary Key, 
+department varchar(30), 
+designation varchar(50), 
+email varchar(30));
+
+desc official;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| official_id | bigint(5)   | NO   | PRI | NULL    |       |
+| department  | varchar(30) | YES  |     | NULL    |       |
+| designation | varchar(50) | YES  |     | NULL    |       |
+| email       | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+insert into official
+(official_id, department, designation, email) values 
+(1, 'Sales', 'Ahmedabad', 'sales@gmail.com'), 
+(2, 'IT', 'Patan', 'it@gmail.com'), 
+(3, 'Manager', 'Ahmedabad', 'manager@gmail.com'), 
+(4, 'Sales', 'Dehgam', 'sales@gmail.com'), 
+(7, 'Sales', 'Unjha', 'sales@gmail.com'), 
+(8, 'IT', 'Baluntri', 'it@gmail.com'); 
+
+select * from official;
++-------------+------------+-------------+-------------------+
+| official_id | department | designation | email             |
++-------------+------------+-------------+-------------------+
+|           1 | Sales      | Ahmedabad   | sales@gmail.com   |
+|           2 | IT         | Patan       | it@gmail.com      |
+|           3 | Manager    | Ahmedabad   | manager@gmail.com |
+|           4 | Sales      | Dehgam      | sales@gmail.com   |
+|           7 | Sales      | Unjha       | sales@gmail.com   |
+|           8 | IT         | Baluntri    | it@gmail.com      |
++-------------+------------+-------------+-------------------+
+
+-------------------------------------------------------------------------
+Create salary Table
+-------------------------------------------------------------------------
+
+create table salary 
+(email varchar(30), 
+salary float(10,2), 
+deduction float(10,2));
+
+desc salary;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| email      | varchar(30) | YES  |     | NULL    |       |
+| salary     | float(10,2) | YES  |     | NULL    |       |
+| deduction  | float(10,2) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+insert into salary (email, salary, deduction) values 
+('sales@gmail.com', 10000, 2000), 
+('it@gmail.com', 20000, 4000), 
+('manager@gmail.com', 50000, 10000), 
+('sales@gmail.com', 12000, 2200), 
+('sales@gmail.com', 15000, 1500), 
+('it@gmail.com', 25000, 5000);
+
+select * from salary;
++-------------------+----------+-----------+
+| email             | salary   | deduction |
++-------------------+----------+-----------+
+| sales@gmail.com   | 10000.00 |   2000.00 |
+| it@gmail.com      | 20000.00 |   4000.00 |
+| manager@gmail.com | 50000.00 |  10000.00 |
+| sales@gmail.com   | 12000.00 |   2200.00 |
+| sales@gmail.com   | 15000.00 |   1500.00 |
+| it@gmail.com      | 25000.00 |   5000.00 |
++-------------------+----------+-----------+
+
+=============================================================================================
+
+Inner Joins
+---------------------------------------------------------------------------
+
+select e.emp_id, e.emp_name, o.department, o.designation from employee e 
+join official o on e.emp_id=o.emp_id;
++--------+----------+------------+-------------+
+| emp_id | emp_name | department | designation |
++--------+----------+------------+-------------+
+|      1 | Ravi     | Sales      | Khambhat    |
+|      2 | Aaqib    | IT         | Patan       |
+|      3 | Nidhi    | Manager    | Ahmedabad   |
+|      4 | Jinal    | HR         | Dehgam      |
++--------+----------+------------+-------------+
+
+
+select e.emp_id, e.emp_name, o.department, o.designation, s.salary, s.deduction 
+from employee e join official o on e.emp_id=o.emp_id join salary s on o.email=s.email;
++--------+----------+------------+-------------+----------+-----------+
+| emp_id | emp_name | department | designation | salary   | deduction |
++--------+----------+------------+-------------+----------+-----------+
+|      1 | Ravi     | Sales      | Khambhat    | 10000.00 |   2000.00 |
+|      2 | Aaqib    | IT         | Patan       | 20000.00 |   4000.00 |
+|      3 | Nidhi    | Manager    | Ahmedabad   | 50000.00 |  10000.00 |
+|      4 | Jinal    | HR         | Dehgam      | 12000.00 |   2200.00 |
++--------+----------+------------+-------------+----------+-----------+
+
+
+-----------------------------------------------------------------------------
+
+Outer Joins
+-----------------------------------------------------------------------------
+
+Left Join :
+--------------------------------------------------------------
+select e.emp_id, e.emp_name, o.department, o.designation from 
+employee e left join official o on e.emp_id=o.emp_id;
++--------+-----------+------------+-------------+
+| emp_id | emp_name  | department | designation |
++--------+-----------+------------+-------------+
+|      1 | Ravi      | Sales      | Khambhat    |
+|      2 | Aaqib     | IT         | Patan       |
+|      3 | Nidhi     | Manager    | Ahmedabad   |
+|      4 | Jinal     | HR         | Dehgam      |
+|      5 | Ghanshyam | NULL       | NULL        |
+|      6 | Kenvy     | NULL       | NULL        |
++--------+-----------+------------+-------------+
+---------------------------------------------------------------
+
+Right Join : 
+---------------------------------------------------------------
+select e.emp_id, e.emp_name, o.department, o.designation 
+from employee e right join official o on e.emp_id=o.emp_id;
++--------+-----------+------------+-------------+
+| emp_id | emp_name  | department | designation |
++--------+-----------+------------+-------------+
+|      1 | Ravi      | Sales      | Khambhat    |
+|      2 | Aaqib     | IT         | Patan       |
+|      3 | Nidhi     | Manager    | Ahmedabad   |
+|      4 | Jinal     | HR         | Dehgam      |
+|      5 | Ghanshyam | Account    | Unjha       |
+|      6 | Kenvy     | Analyst    | Baluntri    |
++--------+-----------+------------+-------------+
+---------------------------------------------------------------------------
+
+Full Join :
+--------------------------------------------------------------------------
+select e.emp_id, e.emp_name, e.emp_address, o.designation, o.department 
+from employee e left join official o on e.emp_id=o.emp_id 
+union all 
+select e.emp_id, e.emp_name, e.emp_address, o.designation, o.department 
+from employee e right join official o on e.emp_id=o.emp_id; 
++--------+-----------+-------------+-------------+------------+
+| emp_id | emp_name  | emp_address | designation | department |
++--------+-----------+-------------+-------------+------------+
+|      1 | Ravi      | Patan       | Khambhat    | Sales      |
+|      2 | Aaqib     | Ahmedabad   | Patan       | IT         |
+|      3 | Nidhi     | Dehgam      | Ahmedabad   | Manager    |
+|      4 | Jinal     | Khambhat    | Dehgam      | HR         |
+|      5 | Ghanshyam | Baluntri    | Unjha       | Account    |
+|      6 | Kenvy     | Unjha       | Baluntri    | Analyst    |
+|      1 | Ravi      | Patan       | Khambhat    | Sales      |
+|      2 | Aaqib     | Ahmedabad   | Patan       | IT         |
+|      3 | Nidhi     | Dehgam      | Ahmedabad   | Manager    |
+|      4 | Jinal     | Khambhat    | Dehgam      | HR         |
+|      5 | Ghanshyam | Baluntri    | Unjha       | Account    |
+|      6 | Kenvy     | Unjha       | Baluntri    | Analyst    |
++--------+-----------+-------------+-------------+------------+
+-----------------------------------------------------------------------
+
+Self Join :
+-----------------------------------------------------------------------
+select e.emp_name, e1.emp_name from employee e left join 
+employee e1 on e.emp_id=e1.emp_id 
+union all 
+select e.emp_name, e1.emp_name from employee e left join 
+employee e1 on e.emp_id=e1.emp_id;
++-----------+-----------+
+| emp_name  | emp_name  |
++-----------+-----------+
+| Ravi      | Ravi      |
+| Aaqib     | Aaqib     |
+| Nidhi     | Nidhi     |
+| Jinal     | Jinal     |
+| Ghanshyam | Ghanshyam |
+| Kenvy     | Kenvy     |
+| Ravi      | Ravi      |
+| Aaqib     | Aaqib     |
+| Nidhi     | Nidhi     |
+| Jinal     | Jinal     |
+| Ghanshyam | Ghanshyam |
+| Kenvy     | Kenvy     |
++-----------+-----------+

@@ -876,7 +876,7 @@ select count(*) from Employee where Employee_Job='Manager';
 
 96) DISPLAY THE NAME OF THEN DEPT THOSE EMPLOYEES WHO JOINED THE COMPANY ON THE SAME DATE?
 
-elect Employee_ID, Employee_Name, Joining_Date, Department_ID from 
+select Employee_ID, Employee_Name, Joining_Date, Department_ID from 
 Employee e where Joining_Date in (select Joining_Date from Employee where Employee_ID <> e.Employee_ID);
 +-------------+---------------+--------------+---------------+
 | Employee_ID | Employee_Name | Joining_Date | Department_ID |
@@ -961,4 +961,8 @@ select * from Employee e where Salary = (select min(Salary) from Employee where 
 |           8 |            50 | IT Department      | Preet         | Web Designer       | 130000 |       6000 | Ahmedabad | 2018-01-25   |               6 |
 |           9 |            40 | Analyst Department | Raj Modi      | Analyst            | 135315 |       5000 | Ahmedabad | 2010-10-15   |               5 |
 +-------------+---------------+--------------------+---------------+--------------------+--------+------------+-----------+--------------+-----------------+
+
+
+================================================================================================================================================================
+
 
